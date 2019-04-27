@@ -202,7 +202,7 @@ public class Engine {
 	}
 
 	/**
-	 * 新意新建程序入口，提供web程序调用
+	 * 新建程序入口，提供web程序调用
 	 */
 	public static Map run(String[] args) throws Throwable {
 		try {
