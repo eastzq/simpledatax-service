@@ -493,8 +493,14 @@ public class TaskGroupContainer extends AbstractContainer {
 		private boolean getTaskResult(long timeout) throws TimeoutException {
 			try {
 				boolean isWriterSuccess = writerFutureTask.get(timeout / 2, TimeUnit.MILLISECONDS);
+				if(!isWriterSuccess) {
+					return false;
+				}
 				boolean isReaderSuccess = readerFutureTask.get(timeout / 2, TimeUnit.MILLISECONDS);
-				return isReaderSuccess && isWriterSuccess;
+				if(!isReaderSuccess) {
+					return false;
+				}
+				return true;
 				// 异常已经在内部进行处理，此处不用做处理！
 			} catch (InterruptedException e) {
 				LOG.error("获取task结果被打断！");
