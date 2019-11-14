@@ -29,7 +29,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<slf4j.version>1.7.25</slf4j.version>
-		<spring.version>4.3.14.RELEASE</spring.version>
+		<spring.version>5.2.1.RELEASE</spring.version>
 		<fastjson.version>1.2.13</fastjson.version>
 		<fasterxml.jackson.version>2.10.1</fasterxml.jackson.version>
 		<druid.version>1.0.29</druid.version>
