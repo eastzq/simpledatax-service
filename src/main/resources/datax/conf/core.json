@@ -23,8 +23,9 @@
         },
         "transport": {
             "channel": {
-                "class": "com.zq.simpledatax.core.transport.channel.memory.MemoryChannel",
+                "class": "com.github.simpledatax.core.transport.channel.memory.MemoryChannel",
                 "speed": {
+                	"desc":"已经弃用限速，设置无效果",
                     "byte": -1,
                     "record": -1
                 },
@@ -33,7 +34,7 @@
                 "byteCapacity": 67108864
             },
             "exchanger": {
-                "class": "com.zq.simpledatax.core.plugin.BufferedRecordExchanger",
+                "class": "com.github.simpledatax.core.plugin.BufferedRecordExchanger",
                 "bufferSize": 32
             }
         },
@@ -52,7 +53,7 @@
         "statistics": {
             "collector": {
                 "plugin": {
-                    "taskClass": "com.zq.simpledatax.core.statistics.plugin.task.StdoutPluginCollector",
+                    "taskClass": "com.github.simpledatax.core.statistics.plugin.task.StdoutPluginCollector",
                     "maxDirtyNumber": 0
                 }
             }
