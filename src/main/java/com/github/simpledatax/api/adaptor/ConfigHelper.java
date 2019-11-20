@@ -89,8 +89,8 @@ public class ConfigHelper {
     public static Configuration parseJob(DataCollectJob job) throws DxException {
         Configuration mainConf = Configuration.from(BASE_JSON);
         // 控制并发数
-        if (job.getOccurs() > 0) {
-            mainConf.set("job.setting.speed.channel", job.getOccurs());
+        if (job.getChannelNum() > 0) {
+            mainConf.set("job.setting.speed.channel", job.getChannelNum());
         }
         // 临时文件配置
         String tempFilePath = "D:/test";

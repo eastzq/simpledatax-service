@@ -8,13 +8,7 @@ public class DataCollectJob implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 默认并发数：1
-     */
-    public static final int DEFAULT_OCCURS = 1;
-
     public DataCollectJob() {
-        this.setOccurs(DEFAULT_OCCURS);
     }
 
     /**
@@ -42,8 +36,8 @@ public class DataCollectJob implements Serializable {
      */
     private DataCollectWriter writer;
 
-    /** 并发数 */
-    private int occurs;
+    /** 并行数目 */
+    private int channelNum=1;
 
     public String getJobName() {
         return jobName;
@@ -77,12 +71,12 @@ public class DataCollectJob implements Serializable {
         this.writer = writer;
     }
 
-    public int getOccurs() {
-        return occurs;
+    public int getChannelNum() {
+        return channelNum;
     }
 
-    public void setOccurs(int occurs) {
-        this.occurs = occurs;
+    public void setChannelNum(int channelNum) {
+        this.channelNum = channelNum;
     }
 
     public boolean isClearJobTempFile() {
