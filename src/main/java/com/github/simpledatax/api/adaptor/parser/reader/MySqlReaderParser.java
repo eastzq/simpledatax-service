@@ -22,7 +22,7 @@ public class MySqlReaderParser implements Parser {
             reader = (CommonDbReader) plugin;
         }
         Configuration configuration = Configuration.newDefault();
-        configuration.set("name", PluginResouce.RDBMS_READER.getName());
+        configuration.set("name", PluginResouce.MYSQL_READER.getName());
         configuration.set("parameter.username", reader.getDbUser());
         configuration.set("parameter.password", reader.getDbPassword());
         if (StringUtils.isNotBlank(reader.getSqlScript())) {
@@ -36,7 +36,7 @@ public class MySqlReaderParser implements Parser {
         String jdbcUrl = MessageFormat.format("jdbc:mysql://{0}:{1}/{2}", reader.getDbIp(), reader.getDbPort(),
                 reader.getDbInstanceName());
         configuration.set("parameter.connection[0].jdbcUrl[0]", jdbcUrl);
-        configuration.set("parameter.fetchSize", "1024");
+        configuration.set("parameter.fetchSize", Integer.MIN_VALUE);
         return configuration;
     }
 }

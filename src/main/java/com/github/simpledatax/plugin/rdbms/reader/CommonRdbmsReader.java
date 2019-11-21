@@ -177,6 +177,10 @@ public class CommonRdbmsReader {
             int columnNumber = 0;
             ResultSet rs = null;
             try {
+                //如果mysql不设置这个属性会出现oom错误。
+                if(dataBaseType==DataBaseType.MySql) {
+                    fetchSize=Integer.MIN_VALUE;
+                }
                 rs = DBUtil.query(conn, querySql, fetchSize);
                 ResultSetMetaData metaData = rs.getMetaData();
                 columnNumber = metaData.getColumnCount();
