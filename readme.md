@@ -49,8 +49,9 @@ public static void main(String[] args) throws DxException {
 
 
 #### 下一步方向
-1. 去除配置项的class类和代码里的全路径。
-2. ...
-
-
+- [x] 去除配置项的class类和代码里的全类名。
+- [ ] 新增定时报告打印。
+- [ ] 新增分片api。
+- [ ] 新增执行任务时支持以单一分片执行任务。
+- [ ] 新增终止采集api。
 
