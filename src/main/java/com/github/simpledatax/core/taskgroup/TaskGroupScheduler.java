@@ -25,10 +25,12 @@ import com.github.simpledatax.core.statistics.communication.Communication;
 import com.github.simpledatax.core.statistics.communication.CommunicationTool;
 import com.github.simpledatax.core.statistics.communication.Communicator;
 import com.github.simpledatax.core.statistics.plugin.task.AbstractTaskPluginCollector;
+import com.github.simpledatax.core.statistics.plugin.task.StdoutPluginCollector;
 import com.github.simpledatax.core.taskgroup.runner.AbstractRunner;
 import com.github.simpledatax.core.taskgroup.runner.ReaderRunner;
 import com.github.simpledatax.core.taskgroup.runner.WriterRunner;
 import com.github.simpledatax.core.transport.channel.Channel;
+import com.github.simpledatax.core.transport.channel.memory.MemoryChannel;
 import com.github.simpledatax.core.transport.exchanger.BufferedRecordExchanger;
 import com.github.simpledatax.core.transport.exchanger.BufferedRecordTransformerExchanger;
 import com.github.simpledatax.core.transport.transformer.TransformerExecution;
@@ -42,9 +44,9 @@ import com.github.simpledatax.dataxservice.face.domain.enums.State;
 public class TaskGroupScheduler {
 
     private static final Logger LOG = LoggerFactory.getLogger(TaskGroupScheduler.class);
-    
+
     private Configuration configuration;
-    
+
     private Communicator communicator;
 
     /**
@@ -57,16 +59,6 @@ public class TaskGroupScheduler {
      */
     private int taskGroupId;
 
-    /**
-     * 使用的channel类
-     */
-    private String channelClazz;
-
-    /**
-     * task收集器使用的类
-     */
-    private String taskCollectorClass;
-
     private List<TaskExecutor> runTasks = null; // 正在运行task
     private Map<Integer, Long> taskStartTimeMap = new HashMap<Integer, Long>();
 
@@ -75,9 +67,6 @@ public class TaskGroupScheduler {
         this.communicator = communicator;
         this.jobId = this.configuration.getLong(CoreConstant.DATAX_CORE_CONTAINER_JOB_ID);
         this.taskGroupId = this.configuration.getInt(CoreConstant.DATAX_CORE_CONTAINER_TASKGROUP_ID);
-        this.channelClazz = this.configuration.getString(CoreConstant.DATAX_CORE_TRANSPORT_CHANNEL_CLASS);
-        this.taskCollectorClass = this.configuration
-                .getString(CoreConstant.DATAX_CORE_STATISTICS_COLLECTOR_PLUGIN_TASKCLASS);
     }
 
     public long getJobId() {
@@ -168,8 +157,8 @@ public class TaskGroupScheduler {
                 } catch (TimeoutException e) {
                     isTimeOut = true;
                     if (LOG.isDebugEnabled()) {
-                        LOG.debug("请求task结果超时---job[{}]，taskGroup[{}]，task[{}]，准备重试！", getJobId(),
-                                getTaskGroupId(), task.getTaskId());
+                        LOG.debug("请求task结果超时---job[{}]，taskGroup[{}]，task[{}]，准备重试！", getJobId(), getTaskGroupId(),
+                                task.getTaskId());
                     }
                 }
                 // 说明抛出了timeout异常。不做处理，执行下一轮
@@ -264,7 +253,7 @@ public class TaskGroupScheduler {
              */
             this.taskCommunication = communicator.getCommunication(taskId);
             Validate.notNull(this.taskCommunication, String.format("taskId[%d]的Communication没有注册过", taskId));
-            this.channel = ClassUtil.instantiate(channelClazz, Channel.class, configuration);
+            this.channel = new MemoryChannel(configuration);
             this.channel.setCommunication(this.taskCommunication);
 
             /**
@@ -326,8 +315,7 @@ public class TaskGroupScheduler {
                         this.taskConfig.getString(CoreConstant.JOB_READER_NAME));
                 newRunner.setJobConf(this.taskConfig.getConfiguration(CoreConstant.JOB_READER_PARAMETER));
 
-                pluginCollector = ClassUtil.instantiate(taskCollectorClass, AbstractTaskPluginCollector.class,
-                        configuration, this.taskCommunication, PluginType.READER);
+                pluginCollector = new StdoutPluginCollector(configuration, this.taskCommunication, PluginType.READER);
 
                 RecordSender recordSender;
                 if (transformerInfoExecs != null && transformerInfoExecs.size() > 0) {
@@ -349,8 +337,7 @@ public class TaskGroupScheduler {
                         this.taskConfig.getString(CoreConstant.JOB_WRITER_NAME));
                 newRunner.setJobConf(this.taskConfig.getConfiguration(CoreConstant.JOB_WRITER_PARAMETER));
 
-                pluginCollector = ClassUtil.instantiate(taskCollectorClass, AbstractTaskPluginCollector.class,
-                        configuration, this.taskCommunication, PluginType.WRITER);
+                pluginCollector = new StdoutPluginCollector(configuration, this.taskCommunication, PluginType.WRITER);
                 ((WriterRunner) newRunner)
                         .setRecordReceiver(new BufferedRecordExchanger(this.channel, pluginCollector));
                 /**

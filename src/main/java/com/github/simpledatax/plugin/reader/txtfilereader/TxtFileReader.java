@@ -1,20 +1,5 @@
 package com.github.simpledatax.plugin.reader.txtfilereader;
 
-import com.github.simpledatax.common.exception.DataXException;
-import com.github.simpledatax.common.plugin.RecordSender;
-import com.github.simpledatax.common.spi.Reader;
-import com.github.simpledatax.common.util.Configuration;
-import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredStorageReaderErrorCode;
-import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredStorageReaderUtil;
-import com.google.common.collect.Sets;
-
-import org.apache.commons.io.Charsets;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.BooleanUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -28,6 +13,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
+
+import org.apache.commons.io.Charsets;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.github.simpledatax.common.exception.DataXException;
+import com.github.simpledatax.common.plugin.RecordSender;
+import com.github.simpledatax.common.spi.Reader;
+import com.github.simpledatax.common.util.Configuration;
+import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderConstant;
+import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderKey;
+import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredStorageReaderErrorCode;
+import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredStorageReaderUtil;
+import com.google.common.collect.Sets;
 
 /**
  * Created by haiwei.luo on 14-9-20.
@@ -77,17 +79,17 @@ public class TxtFileReader extends Reader {
 
 			String encoding = this.originConfig
 					.getString(
-							com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderKey.ENCODING,
-							com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderConstant.DEFAULT_ENCODING);
+							UnstructuredReaderKey.ENCODING,
+							UnstructuredReaderConstant.DEFAULT_ENCODING);
 			if (StringUtils.isBlank(encoding)) {
                 this.originConfig
-                        .set(com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderKey.ENCODING,
-                                com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderConstant.DEFAULT_ENCODING);
+                        .set(UnstructuredReaderKey.ENCODING,
+                                UnstructuredReaderConstant.DEFAULT_ENCODING);
 			} else {
 				try {
 					encoding = encoding.trim();
 					this.originConfig
-							.set(com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderKey.ENCODING,
+							.set(UnstructuredReaderKey.ENCODING,
 									encoding);
 					Charsets.toCharset(encoding);
 				} catch (UnsupportedCharsetException uce) {
@@ -105,13 +107,13 @@ public class TxtFileReader extends Reader {
 			// column: 1. index type 2.value type 3.when type is Date, may have
 			// format
 			List<Configuration> columns = this.originConfig
-					.getListConfiguration(com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderKey.COLUMN);
+					.getListConfiguration(UnstructuredReaderKey.COLUMN);
 			// handle ["*"]
 			if (null != columns && 1 == columns.size()) {
 				String columnsInStr = columns.get(0).toString();
 				if ("\"*\"".equals(columnsInStr) || "'*'".equals(columnsInStr)) {
 					this.originConfig
-							.set(com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderKey.COLUMN,
+							.set(UnstructuredReaderKey.COLUMN,
 									null);
 					columns = null;
 				}
@@ -121,12 +123,12 @@ public class TxtFileReader extends Reader {
 				for (Configuration eachColumnConf : columns) {
 					eachColumnConf
 							.getNecessaryValue(
-									com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderKey.TYPE,
+									UnstructuredReaderKey.TYPE,
 									TxtFileReaderErrorCode.REQUIRED_VALUE);
 					Integer columnIndex = eachColumnConf
-							.getInt(com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderKey.INDEX);
+							.getInt(UnstructuredReaderKey.INDEX);
 					String columnValue = eachColumnConf
-							.getString(com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderKey.VALUE);
+							.getString(UnstructuredReaderKey.VALUE);
 
 					if (null == columnIndex && null == columnValue) {
 						throw DataXException.asDataXException(
@@ -150,10 +152,10 @@ public class TxtFileReader extends Reader {
 
 			// only support compress types
 			String compress = this.originConfig
-					.getString(com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderKey.COMPRESS);
+					.getString(UnstructuredReaderKey.COMPRESS);
 			if (StringUtils.isBlank(compress)) {
 				this.originConfig
-						.set(com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderKey.COMPRESS,
+						.set(UnstructuredReaderKey.COMPRESS,
 								null);
 			} else {
 				Set<String> supportedCompress = Sets
@@ -168,12 +170,12 @@ public class TxtFileReader extends Reader {
 											compress));
 				}
 				this.originConfig
-						.set(com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderKey.COMPRESS,
+						.set(UnstructuredReaderKey.COMPRESS,
 								compress);
 			}
 
 			String delimiterInStr = this.originConfig
-					.getString(com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredReaderKey.FIELD_DELIMITER);
+					.getString(UnstructuredReaderKey.FIELD_DELIMITER);
 			// warn: if have, length must be one
 			if (null != delimiterInStr && 1 != delimiterInStr.length()) {
 				throw DataXException.asDataXException(

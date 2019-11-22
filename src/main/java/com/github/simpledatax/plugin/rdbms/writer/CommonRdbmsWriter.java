@@ -232,7 +232,7 @@ public class CommonRdbmsWriter {
                     this.completeColumns.add(entry.getKey());
                 }
             } else {
-                this.completeColumns=this.columns;
+                this.completeColumns = this.columns;
             }
 
             this.preSqls = writerSliceConfig.getList(RdbmsWriterKey.PRE_SQL, String.class);

@@ -27,10 +27,10 @@ import com.github.simpledatax.common.plugin.TaskPluginCollector;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.statistics.communication.Communication;
 import com.github.simpledatax.core.transport.channel.Channel;
+import com.github.simpledatax.core.transport.record.DefaultRecord;
 import com.github.simpledatax.core.transport.record.TerminateRecord;
 import com.github.simpledatax.core.transport.transformer.TransformerExecution;
 import com.github.simpledatax.core.util.FrameworkErrorCode;
-import com.github.simpledatax.core.util.container.CoreConstant;
 
 public class RecordExchanger extends TransformerExchanger implements RecordSender, RecordReceiver {
 
@@ -48,15 +48,8 @@ public class RecordExchanger extends TransformerExchanger implements RecordSende
 		assert channel != null;
 		this.channel = channel;
 		this.configuration = channel.getConfiguration();
-		try {
-			RecordExchanger.RECORD_CLASS = (Class<? extends Record>) Class
-					.forName(configuration.getString(
-                            CoreConstant.DATAX_CORE_TRANSPORT_RECORD_CLASS,
-                            "com.github.simpledatax.core.transport.record.DefaultRecord"));
-		} catch (ClassNotFoundException e) {
-			throw DataXException.asDataXException(
-					FrameworkErrorCode.CONFIG_ERROR, e);
-		}
+		RecordExchanger.RECORD_CLASS = DefaultRecord.class;
+
 	}
 
 	@Override

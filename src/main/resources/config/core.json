@@ -1,0 +1,50 @@
+{
+	"entry": {
+		"jvm": "-Xms1G -Xmx1G",
+		"environment": {
+			
+		}
+	},
+	"common": {
+		"column": {
+			"datetimeFormat": "yyyy-MM-dd HH:mm:ss",
+			"timeFormat": "HH:mm:ss",
+			"dateFormat": "yyyy-MM-dd",
+			"extraFormats": [
+				"yyyyMMdd"
+			],
+			"timeZone": "GMT+8",
+			"encoding": "utf-8"
+		}
+	},
+	"core": {
+		"transport": {
+			"channel": {
+				"channelNum": 1,
+				"flowControlInterval": 20,
+				"capacity": 512,
+				"byteCapacity": 67108864
+			},
+			"exchanger": {
+				"bufferSize": 32
+			}
+		},
+		"container": {
+			"job": {
+				"tempFilePath": "/test",
+				"isClearJobTempFile": true,
+				"id": -1
+			},
+			"trace": {
+				"enable": "false"
+			}
+		},
+		"statistics": {
+			"collector": {
+				"plugin": {
+					"maxDirtyNumber": 0
+				}
+			}
+		}
+	}
+}

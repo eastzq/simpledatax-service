@@ -7,6 +7,7 @@ import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.spi.Reader;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.plugin.rdbms.reader.CommonRdbmsReader;
+import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant;
 import com.github.simpledatax.plugin.rdbms.util.DBUtilErrorCode;
 import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
 
@@ -23,7 +24,7 @@ public class SqlServerReader extends Reader {
 		public void init() {
 			this.originalConfig = super.getPluginJobConf();
 			int fetchSize = this.originalConfig.getInt(
-					com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant.FETCH_SIZE,
+					RdbmsReaderConstant.FETCH_SIZE,
 					Constant.DEFAULT_FETCH_SIZE);
 			if (fetchSize < 1) {
 				throw DataXException
@@ -32,7 +33,7 @@ public class SqlServerReader extends Reader {
 										fetchSize));
 			}
 			this.originalConfig.set(
-					com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant.FETCH_SIZE,
+					RdbmsReaderConstant.FETCH_SIZE,
 					fetchSize);
 
 			this.commonRdbmsReaderJob = new CommonRdbmsReader.Job(
@@ -74,7 +75,7 @@ public class SqlServerReader extends Reader {
 		@Override
 		public void startRead(RecordSender recordSender) {
 			int fetchSize = this.readerSliceConfig
-					.getInt(com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant.FETCH_SIZE);
+					.getInt(RdbmsReaderConstant.FETCH_SIZE);
 
 			this.commonRdbmsReaderTask.startRead(this.readerSliceConfig,
 					recordSender, super.getTaskPluginCollector(), fetchSize);

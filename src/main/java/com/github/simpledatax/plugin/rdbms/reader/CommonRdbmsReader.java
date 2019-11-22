@@ -34,6 +34,7 @@ import com.github.simpledatax.plugin.rdbms.util.DBUtil;
 import com.github.simpledatax.plugin.rdbms.util.DBUtilErrorCode;
 import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
 import com.github.simpledatax.plugin.rdbms.util.RdbmsException;
+import com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterConstant;
 import com.google.common.collect.Lists;
 
 public class CommonRdbmsReader {
@@ -143,10 +144,9 @@ public class CommonRdbmsReader {
             this.jdbcUrl = readerSliceConfig.getString(RdbmsReaderKey.JDBC_URL);
 
             // ob10的处理
-            if (this.jdbcUrl.startsWith(com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterConstant.OB10_SPLIT_STRING)
+            if (this.jdbcUrl.startsWith(RdbmsWriterConstant.OB10_SPLIT_STRING)
                     && this.dataBaseType == DataBaseType.MySql) {
-                String[] ss = this.jdbcUrl
-                        .split(com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterConstant.OB10_SPLIT_STRING_PATTERN);
+                String[] ss = this.jdbcUrl.split(RdbmsWriterConstant.OB10_SPLIT_STRING_PATTERN);
                 if (ss.length != 3) {
                     throw DataXException.asDataXException(DBUtilErrorCode.JDBC_OB10_ADDRESS_ERROR,
                             "JDBC OB10格式错误，请联系askdatax");
@@ -177,14 +177,14 @@ public class CommonRdbmsReader {
             int columnNumber = 0;
             ResultSet rs = null;
             try {
-                //如果mysql不设置这个属性会出现oom错误。
-                if(dataBaseType==DataBaseType.MySql) {
-                    fetchSize=Integer.MIN_VALUE;
+                // 如果mysql不设置这个属性会出现oom错误。
+                if (dataBaseType == DataBaseType.MySql) {
+                    fetchSize = Integer.MIN_VALUE;
                 }
                 rs = DBUtil.query(conn, querySql, fetchSize);
                 ResultSetMetaData metaData = rs.getMetaData();
                 columnNumber = metaData.getColumnCount();
-                
+
                 long rsNextUsedTime = 0;
                 long lastTime = System.nanoTime();
                 while (rs.next()) {

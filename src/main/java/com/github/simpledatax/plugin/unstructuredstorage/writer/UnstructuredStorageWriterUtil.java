@@ -36,36 +36,28 @@ public class UnstructuredStorageWriterUtil {
 
     }
 
-    private static final Logger LOG = LoggerFactory
-            .getLogger(UnstructuredStorageWriterUtil.class);
+    private static final Logger LOG = LoggerFactory.getLogger(UnstructuredStorageWriterUtil.class);
 
     /**
      * check parameter: writeMode, encoding, compress, filedDelimiter
-     * */
+     */
     public static void validateParameter(Configuration writerConfiguration) {
         // writeMode check
-        String writeMode = writerConfiguration.getNecessaryValue(
-                UnstructuredWriterKey.WRITE_MODE,
+        String writeMode = writerConfiguration.getNecessaryValue(UnstructuredWriterKey.WRITE_MODE,
                 UnstructuredStorageWriterErrorCode.REQUIRED_VALUE);
         writeMode = writeMode.trim();
-        Set<String> supportedWriteModes = Sets.newHashSet("truncate", "append",
-                "nonConflict");
+        Set<String> supportedWriteModes = Sets.newHashSet("truncate", "append", "nonConflict");
         if (!supportedWriteModes.contains(writeMode)) {
-            throw DataXException
-                    .asDataXException(
-                            UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE,
-                            String.format(
-                                    "仅支持 truncate, append, nonConflict 三种模式, 不支持您配置的 writeMode 模式 : [%s]",
-                                    writeMode));
+            throw DataXException.asDataXException(UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE,
+                    String.format("仅支持 truncate, append, nonConflict 三种模式, 不支持您配置的 writeMode 模式 : [%s]", writeMode));
         }
         writerConfiguration.set(UnstructuredWriterKey.WRITE_MODE, writeMode);
 
         // encoding check
         String encoding = writerConfiguration.getString(UnstructuredWriterKey.ENCODING);
         if (StringUtils.isBlank(encoding)) {
-            // like "  ", null
-            LOG.warn(String.format("您的encoding配置为空, 将使用默认值[%s]",
-                    UnstructuredWriterConstant.DEFAULT_ENCODING));
+            // like " ", null
+            LOG.warn(String.format("您的encoding配置为空, 将使用默认值[%s]", UnstructuredWriterConstant.DEFAULT_ENCODING));
             writerConfiguration.set(UnstructuredWriterKey.ENCODING, UnstructuredWriterConstant.DEFAULT_ENCODING);
         } else {
             try {
@@ -73,8 +65,7 @@ public class UnstructuredStorageWriterUtil {
                 writerConfiguration.set(UnstructuredWriterKey.ENCODING, encoding);
                 Charsets.toCharset(encoding);
             } catch (Exception e) {
-                throw DataXException.asDataXException(
-                        UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE,
+                throw DataXException.asDataXException(UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE,
                         String.format("不支持您配置的编码格式:[%s]", encoding), e);
             }
         }
@@ -86,27 +77,22 @@ public class UnstructuredStorageWriterUtil {
         } else {
             Set<String> supportedCompress = Sets.newHashSet("gzip", "bzip2");
             if (!supportedCompress.contains(compress.toLowerCase().trim())) {
-                String message = String.format(
-                        "仅支持 [%s] 文件压缩格式 , 不支持您配置的文件压缩格式: [%s]",
+                String message = String.format("仅支持 [%s] 文件压缩格式 , 不支持您配置的文件压缩格式: [%s]",
                         StringUtils.join(supportedCompress, ","), compress);
-                throw DataXException.asDataXException(
-                        UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE,
+                throw DataXException.asDataXException(UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE,
                         String.format(message, compress));
             }
         }
 
         // fieldDelimiter check
-        String delimiterInStr = writerConfiguration
-                .getString(UnstructuredWriterKey.FIELD_DELIMITER);
+        String delimiterInStr = writerConfiguration.getString(UnstructuredWriterKey.FIELD_DELIMITER);
         // warn: if have, length must be one
         if (null != delimiterInStr && 1 != delimiterInStr.length()) {
-            throw DataXException.asDataXException(
-                    UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE,
+            throw DataXException.asDataXException(UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE,
                     String.format("仅仅支持单字符切分, 您配置的切分为 : [%s]", delimiterInStr));
         }
         if (null == delimiterInStr) {
-            LOG.warn(String.format("您没有配置列分隔符, 使用默认值[%s]",
-                    UnstructuredWriterConstant.DEFAULT_FIELD_DELIMITER));
+            LOG.warn(String.format("您没有配置列分隔符, 使用默认值[%s]", UnstructuredWriterConstant.DEFAULT_FIELD_DELIMITER));
             writerConfiguration.set(UnstructuredWriterKey.FIELD_DELIMITER,
                     UnstructuredWriterConstant.DEFAULT_FIELD_DELIMITER);
         }
@@ -116,15 +102,13 @@ public class UnstructuredStorageWriterUtil {
                 UnstructuredWriterConstant.FILE_FORMAT_TEXT);
         if (!UnstructuredWriterConstant.FILE_FORMAT_CSV.equals(fileFormat)
                 && !UnstructuredWriterConstant.FILE_FORMAT_TEXT.equals(fileFormat)) {
-            throw DataXException.asDataXException(
-                    UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE, String
-                            .format("您配置的fileFormat [%s]错误, 支持csv, text两种.",
-                                    fileFormat));
+            throw DataXException.asDataXException(UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE,
+                    String.format("您配置的fileFormat [%s]错误, 支持csv, text两种.", fileFormat));
         }
     }
 
-    public static List<Configuration> split(Configuration writerSliceConfig,
-            Set<String> originAllFileExists, int mandatoryNumber) {
+    public static List<Configuration> split(Configuration writerSliceConfig, Set<String> originAllFileExists,
+            int mandatoryNumber) {
         LOG.info("begin do split...");
         Set<String> allFileExists = new HashSet<String>();
         allFileExists.addAll(originAllFileExists);
@@ -144,25 +128,21 @@ public class UnstructuredStorageWriterUtil {
             }
             allFileExists.add(fullFileName);
             splitedTaskConfig.set(UnstructuredWriterKey.FILE_NAME, fullFileName);
-            LOG.info(String
-                    .format("splited write file name:[%s]", fullFileName));
+            LOG.info(String.format("splited write file name:[%s]", fullFileName));
             writerSplitConfigs.add(splitedTaskConfig);
         }
         LOG.info("end do split.");
         return writerSplitConfigs;
     }
 
-    public static String buildFilePath(String path, String fileName,
-            String suffix) {
+    public static String buildFilePath(String path, String fileName, String suffix) {
         boolean isEndWithSeparator = false;
         switch (IOUtils.DIR_SEPARATOR) {
         case IOUtils.DIR_SEPARATOR_UNIX:
-            isEndWithSeparator = path.endsWith(String
-                    .valueOf(IOUtils.DIR_SEPARATOR));
+            isEndWithSeparator = path.endsWith(String.valueOf(IOUtils.DIR_SEPARATOR));
             break;
         case IOUtils.DIR_SEPARATOR_WINDOWS:
-            isEndWithSeparator = path.endsWith(String
-                    .valueOf(IOUtils.DIR_SEPARATOR_WINDOWS));
+            isEndWithSeparator = path.endsWith(String.valueOf(IOUtils.DIR_SEPARATOR_WINDOWS));
             break;
         default:
             break;
@@ -178,11 +158,9 @@ public class UnstructuredStorageWriterUtil {
         return String.format("%s%s%s", path, fileName, suffix);
     }
 
-    public static void writeToStream(RecordReceiver lineReceiver,
-            OutputStream outputStream, Configuration config, String context,
-            TaskPluginCollector taskPluginCollector) {
-        String encoding = config.getString(UnstructuredWriterKey.ENCODING,
-                UnstructuredWriterConstant.DEFAULT_ENCODING);
+    public static void writeToStream(RecordReceiver lineReceiver, OutputStream outputStream, Configuration config,
+            String context, TaskPluginCollector taskPluginCollector) {
+        String encoding = config.getString(UnstructuredWriterKey.ENCODING, UnstructuredWriterConstant.DEFAULT_ENCODING);
         // handle blank encoding
         if (StringUtils.isBlank(encoding)) {
             LOG.warn(String.format("您配置的encoding为[%s], 使用默认值[%s]", encoding,
@@ -195,52 +173,37 @@ public class UnstructuredStorageWriterUtil {
         // compress logic
         try {
             if (null == compress) {
-                writer = new BufferedWriter(new OutputStreamWriter(
-                        outputStream, encoding));
+                writer = new BufferedWriter(new OutputStreamWriter(outputStream, encoding));
             } else {
                 // TODO more compress
                 if ("gzip".equalsIgnoreCase(compress)) {
-                    CompressorOutputStream compressorOutputStream = new GzipCompressorOutputStream(
-                            outputStream);
-                    writer = new BufferedWriter(new OutputStreamWriter(
-                            compressorOutputStream, encoding));
+                    CompressorOutputStream compressorOutputStream = new GzipCompressorOutputStream(outputStream);
+                    writer = new BufferedWriter(new OutputStreamWriter(compressorOutputStream, encoding));
                 } else if ("bzip2".equalsIgnoreCase(compress)) {
-                    CompressorOutputStream compressorOutputStream = new BZip2CompressorOutputStream(
-                            outputStream);
-                    writer = new BufferedWriter(new OutputStreamWriter(
-                            compressorOutputStream, encoding));
+                    CompressorOutputStream compressorOutputStream = new BZip2CompressorOutputStream(outputStream);
+                    writer = new BufferedWriter(new OutputStreamWriter(compressorOutputStream, encoding));
                 } else {
-                    throw DataXException
-                            .asDataXException(
-                                    UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE,
-                                    String.format(
-                                            "仅支持 gzip, bzip2 文件压缩格式 , 不支持您配置的文件压缩格式: [%s]",
-                                            compress));
+                    throw DataXException.asDataXException(UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE,
+                            String.format("仅支持 gzip, bzip2 文件压缩格式 , 不支持您配置的文件压缩格式: [%s]", compress));
                 }
             }
-            UnstructuredStorageWriterUtil.doWriteToStream(lineReceiver, writer,
-                    context, config, taskPluginCollector);
+            UnstructuredStorageWriterUtil.doWriteToStream(lineReceiver, writer, context, config, taskPluginCollector);
         } catch (UnsupportedEncodingException uee) {
-            throw DataXException
-                    .asDataXException(
-                            UnstructuredStorageWriterErrorCode.Write_FILE_WITH_CHARSET_ERROR,
-                            String.format("不支持的编码格式 : [%s]", encoding), uee);
+            throw DataXException.asDataXException(UnstructuredStorageWriterErrorCode.Write_FILE_WITH_CHARSET_ERROR,
+                    String.format("不支持的编码格式 : [%s]", encoding), uee);
         } catch (NullPointerException e) {
-            throw DataXException.asDataXException(
-                    UnstructuredStorageWriterErrorCode.RUNTIME_EXCEPTION,
-                    "运行时错误, 请联系我们", e);
+            throw DataXException.asDataXException(UnstructuredStorageWriterErrorCode.RUNTIME_EXCEPTION, "运行时错误, 请联系我们",
+                    e);
         } catch (IOException e) {
-            throw DataXException.asDataXException(
-                    UnstructuredStorageWriterErrorCode.Write_FILE_IO_ERROR,
+            throw DataXException.asDataXException(UnstructuredStorageWriterErrorCode.Write_FILE_IO_ERROR,
                     String.format("流写入错误 : [%s]", context), e);
         } finally {
             IOUtils.closeQuietly(writer);
         }
     }
 
-    private static void doWriteToStream(RecordReceiver lineReceiver,
-            BufferedWriter writer, String contex, Configuration config,
-            TaskPluginCollector taskPluginCollector) throws IOException {
+    private static void doWriteToStream(RecordReceiver lineReceiver, BufferedWriter writer, String contex,
+            Configuration config, TaskPluginCollector taskPluginCollector) throws IOException {
 
         String nullFormat = config.getString(UnstructuredWriterKey.NULL_FORMAT);
 
@@ -257,21 +220,19 @@ public class UnstructuredStorageWriterUtil {
 
         String delimiterInStr = config.getString(UnstructuredWriterKey.FIELD_DELIMITER);
         if (null != delimiterInStr && 1 != delimiterInStr.length()) {
-            throw DataXException.asDataXException(
-                    UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE,
+            throw DataXException.asDataXException(UnstructuredStorageWriterErrorCode.ILLEGAL_VALUE,
                     String.format("仅仅支持单字符切分, 您配置的切分为 : [%s]", delimiterInStr));
         }
         if (null == delimiterInStr) {
-            LOG.warn(String.format("您没有配置列分隔符, 使用默认值[%s]",
-                    UnstructuredWriterConstant.DEFAULT_FIELD_DELIMITER));
+            LOG.warn(String.format("您没有配置列分隔符, 使用默认值[%s]", UnstructuredWriterConstant.DEFAULT_FIELD_DELIMITER));
         }
 
         // warn: fieldDelimiter could not be '' for no fieldDelimiter
         char fieldDelimiter = config.getChar(UnstructuredWriterKey.FIELD_DELIMITER,
                 UnstructuredWriterConstant.DEFAULT_FIELD_DELIMITER);
 
-        UnstructuredWriter unstructuredWriter = TextCsvWriterManager
-                .produceUnstructuredWriter(fileFormat, fieldDelimiter, writer);
+        UnstructuredWriter unstructuredWriter = TextCsvWriterManager.produceUnstructuredWriter(fileFormat,
+                fieldDelimiter, writer);
 
         List<String> headers = config.getList(UnstructuredWriterKey.HEADER, String.class);
         if (null != headers && !headers.isEmpty()) {
@@ -280,8 +241,7 @@ public class UnstructuredStorageWriterUtil {
 
         Record record = null;
         while ((record = lineReceiver.getFromReader()) != null) {
-            UnstructuredStorageWriterUtil.transportOneRecord(record,
-                    nullFormat, dateParse, taskPluginCollector,
+            UnstructuredStorageWriterUtil.transportOneRecord(record, nullFormat, dateParse, taskPluginCollector,
                     unstructuredWriter);
         }
 
@@ -291,10 +251,9 @@ public class UnstructuredStorageWriterUtil {
 
     /**
      * 异常表示脏数据
-     * */
-    public static void transportOneRecord(Record record, String nullFormat,
-            DateFormat dateParse, TaskPluginCollector taskPluginCollector,
-            UnstructuredWriter unstructuredWriter) {
+     */
+    public static void transportOneRecord(Record record, String nullFormat, DateFormat dateParse,
+            TaskPluginCollector taskPluginCollector, UnstructuredWriter unstructuredWriter) {
         // warn: default is null
         if (null == nullFormat) {
             nullFormat = "null";
@@ -312,8 +271,7 @@ public class UnstructuredStorageWriterUtil {
                             splitedRows.add(column.asString());
                         } else {
                             if (null != dateParse) {
-                                splitedRows.add(dateParse.format(column
-                                        .asDate()));
+                                splitedRows.add(dateParse.format(column.asDate()));
                             } else {
                                 splitedRows.add(column.asString());
                             }

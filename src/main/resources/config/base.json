@@ -1,12 +1,7 @@
 {
 	"job": {
 		"setting": {
-			"speed": {
-				"channel": 2
-			},
-			"errorLimit": {
-				"record": 0
-			}
+			
 		},
 		"content": [
 			{

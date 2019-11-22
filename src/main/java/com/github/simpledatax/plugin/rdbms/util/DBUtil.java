@@ -30,6 +30,7 @@ import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.common.util.RetryUtil;
 import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderKey;
+import com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterConstant;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 public final class DBUtil {
@@ -371,8 +372,8 @@ public final class DBUtil {
                                                    String url, String user, String pass, String socketTimeout) {
 
         //ob10的处理
-        if (url.startsWith(com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterConstant.OB10_SPLIT_STRING) && dataBaseType == DataBaseType.MySql) {
-            String[] ss = url.split(com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterConstant.OB10_SPLIT_STRING_PATTERN);
+        if (url.startsWith(RdbmsWriterConstant.OB10_SPLIT_STRING) && dataBaseType == DataBaseType.MySql) {
+            String[] ss = url.split(RdbmsWriterConstant.OB10_SPLIT_STRING_PATTERN);
             if (ss.length != 3) {
                 throw DataXException
                         .asDataXException(

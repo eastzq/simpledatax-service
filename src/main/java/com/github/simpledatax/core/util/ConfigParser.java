@@ -64,16 +64,6 @@ public final class ConfigParser {
 		return configuration;
 	}
 
-	/**
-	 * @param configuration 配置对象
-	 * @return
-	 */
-	public static Configuration xy_parse(Configuration configuration) {
-		configuration = SecretUtil.decryptSecretKey(configuration);
-		configuration.merge(Configuration.from(ConfigHelper.CORE_JSON), false);
-		configuration.merge(ConfigHelper.plugins, false);
-		return configuration;
-	}
 
 	private static Configuration parseCoreConfig(final String path) {
 		return Configuration.from(new File(path));

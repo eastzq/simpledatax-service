@@ -128,7 +128,7 @@ public class JobContainer {
      * reader和writer的初始化
      */
     private void init() {
-        this.jobId = this.configuration.getLong(CoreConstant.DATAX_CORE_CONTAINER_JOB_ID, -1);
+        this.jobId = this.configuration.getLong(CoreConstant.DATAX_CORE_CONTAINER_JOB_ID);
         this.isClearJobTempFile = this.configuration.getBool(CoreConstant.DATAX_CORE_CONTAINER_JOB_ISCLEARJOBTEMPFILE);
         this.createTempFile();
         if (this.jobId < 0) {
@@ -253,7 +253,7 @@ public class JobContainer {
     }
 
     private void adjustChannelNumber() {
-        int channelNumber = this.configuration.getInt(CoreConstant.DATAX_JOB_SETTING_SPEED_CHANNEL);
+        int channelNumber = this.configuration.getInt(CoreConstant.DATAX_CORE_TRANSPORT_CHANNEL_CHANNELNUM);
         if (channelNumber > 0) {
             this.needChannelNumber = channelNumber;
             return;

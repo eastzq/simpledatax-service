@@ -1,12 +1,8 @@
 package com.github.simpledatax.api.adaptor;
 
 import java.io.InputStream;
-import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +10,6 @@ import com.github.simpledatax.api.adaptor.exception.DxException;
 import com.github.simpledatax.api.adaptor.parser.intf.Parser;
 import com.github.simpledatax.api.adaptor.parser.reader.MySqlReaderParser;
 import com.github.simpledatax.api.adaptor.parser.writer.MySqlWriterParser;
-import com.github.simpledatax.api.adaptor.util.PropertiesKey;
 import com.github.simpledatax.api.adaptor.util.ResourceUtil;
 import com.github.simpledatax.api.dto.DataCollectJob;
 import com.github.simpledatax.api.dto.DataCollectReader;
@@ -36,7 +31,6 @@ public class ConfigHelper {
      * 插件配置存放位置！
      */
     public static Configuration plugins;
-    private static Properties conf;
 
     /**
      * 加载基础架子和一些默认配置
@@ -48,35 +42,7 @@ public class ConfigHelper {
      * 存放各种插件配置。默认预加载各种插件！
      */
     static {
-
-        initDataxConfigurer();
         initConfigurer();
-    }
-
-    private static void initConfigurer() {
-        logger.info("初始化全局配置对象！");
-        // 默认从web容器里取
-        ConfigHelper.conf = new Properties();
-        try {
-            conf.load(ResourceUtil.getResourceInJar(ConfigHelper.class, "conf.properties"));
-        } catch (Exception e) {
-            throw new RuntimeException("初始化全局配置对象失败！");
-        }
-    }
-
-    /**
-     * 获取全局配置属性
-     * 
-     * @throws Exception
-     */
-    public static String getConfigValue(String key) {
-        String result = "";
-        try {
-            result = conf.getProperty(key);
-        } catch (Exception e) {
-            logger.error("从epbos全局配置里获取配置失败，key：{}", key);
-        }
-        return result;
     }
 
     /**
@@ -87,38 +53,47 @@ public class ConfigHelper {
      * @throws DxException
      */
     public static Configuration parseJob(DataCollectJob job) throws DxException {
-        Configuration mainConf = Configuration.from(BASE_JSON);
+        Configuration mainConf = Configuration.from(CORE_JSON);
+        mainConf.merge(Configuration.from(ConfigHelper.BASE_JSON), false);
+        mainConf.merge(plugins, false);
         // 控制并发数
         if (job.getChannelNum() > 0) {
-            mainConf.set("job.setting.speed.channel", job.getChannelNum());
-        }
-        // 临时文件配置
-        String tempFilePath = "D:/test";
-        if (StringUtils.isBlank(tempFilePath)) {
-            throw new DxException("从全局配置文件中获取临时文件目录失败，属性名称: " + PropertiesKey.TEMP_FILE_PATH);
+            mainConf.set(CoreConstant.DATAX_CORE_TRANSPORT_CHANNEL_CHANNELNUM, job.getChannelNum());
         }
         mainConf.set(CoreConstant.DATAX_CORE_CONTAINER_JOB_ISCLEARJOBTEMPFILE, job.isClearJobTempFile());
-        mainConf.set(CoreConstant.DATAX_CORE_CONTAINER_JOB_TEMPFILEPATH, tempFilePath);
-
         Configuration readerConf = parseReader(job.getReader());
         Configuration writerConf = parseWriter(job.getWriter());
-        mainConf.set("job.content[0].reader", readerConf.getInternal());
-        mainConf.set("job.content[0].writer", writerConf.getInternal());
-        mainConf.merge(plugins, false);
+        mainConf.set(CoreConstant.DATAX_JOB_CONTENT_READER, readerConf.getInternal());
+        mainConf.set(CoreConstant.DATAX_JOB_CONTENT_WRITER, writerConf.getInternal());
         return mainConf;
     }
-
+    
+    /**
+     * 撘建架子，将输入参数转换成datax默认的配置对象。
+     * 
+     * @param job
+     * @return
+     * @throws DxException
+     */
+    public static Configuration parseJob(String baseJson,int channelNum) throws DxException {
+        Configuration mainConf = Configuration.from(CORE_JSON);
+        mainConf.merge(Configuration.from(baseJson), false);
+        mainConf.merge(plugins, false);
+        mainConf.set(CoreConstant.DATAX_CORE_TRANSPORT_CHANNEL_CHANNELNUM, channelNum);
+        return mainConf;
+    }
+    
     /**
      * 初始化datax配置
      */
-    private static void initDataxConfigurer() {
+    private static void initConfigurer() {
         logger.info("初始化采集模块配置！");
         plugins = Configuration.newDefault();
         InputStream is1 = null;
         InputStream is2 = null;
         try {
-            is1 = ResourceUtil.getResourceInJar(ConfigHelper.class, "datax/conf/base.json");
-            is2 = ResourceUtil.getResourceInJar(ConfigHelper.class, "datax/conf/core.json");
+            is1 = ResourceUtil.getResourceInJar(ConfigHelper.class, "config/base.json");
+            is2 = ResourceUtil.getResourceInJar(ConfigHelper.class, "config/core.json");
             BASE_JSON = IOUtils.toString(is1, "utf-8");
             CORE_JSON = IOUtils.toString(is2, "utf-8");
             // 注册插件

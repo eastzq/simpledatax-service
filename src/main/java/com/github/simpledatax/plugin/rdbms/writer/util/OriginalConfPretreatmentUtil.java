@@ -173,8 +173,8 @@ public final class OriginalConfPretreatmentUtil {
 
     public static boolean isOB10(String jdbcUrl) {
         //ob10的处理
-        if (jdbcUrl.startsWith(com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterConstant.OB10_SPLIT_STRING)) {
-            String[] ss = jdbcUrl.split(com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterConstant.OB10_SPLIT_STRING_PATTERN);
+        if (jdbcUrl.startsWith(RdbmsWriterConstant.OB10_SPLIT_STRING)) {
+            String[] ss = jdbcUrl.split(RdbmsWriterConstant.OB10_SPLIT_STRING_PATTERN);
             if (ss.length != 3) {
                 throw DataXException
                         .asDataXException(

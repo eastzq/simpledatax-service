@@ -30,7 +30,7 @@ public class DxService {
             } else {
                 MDC.put(PropertiesKey.ACCEPT_ID, "job-" + jobId);
             }
-            result = Engine.xy_entry(jobId, configuration);
+            result = Engine.run(jobId, configuration);
         } catch (Throwable e) {
             LOG.error("采集处理异常！{}", e.getMessage());
             throw new DxException("采集处理出现异常，原因：" + e.getMessage(), e);

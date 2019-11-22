@@ -11,115 +11,109 @@ import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.spi.Reader;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.plugin.rdbms.reader.CommonRdbmsReader;
+import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant;
 import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderKey;
 import com.github.simpledatax.plugin.rdbms.util.DBUtilErrorCode;
 import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
 
 public class OracleReader extends Reader {
 
-	private static final DataBaseType DATABASE_TYPE = DataBaseType.Oracle;
+    private static final DataBaseType DATABASE_TYPE = DataBaseType.Oracle;
 
-	public static class Job extends Reader.Job {
+    public static class Job extends Reader.Job {
 
         private static final Logger logger = LoggerFactory.getLogger(OracleReader.Job.class);
 
-		private Configuration originalConfig = null;
-		private CommonRdbmsReader.Job commonRdbmsReaderJob;
-
-		@Override
-		public void init() {
-			this.originalConfig = super.getPluginJobConf();
-			
-			dealFetchSize(this.originalConfig);
-
-			this.commonRdbmsReaderJob = new CommonRdbmsReader.Job(
-					DATABASE_TYPE);
-			this.commonRdbmsReaderJob.init(this.originalConfig);
-
-			// 注意：要在 this.commonRdbmsReaderJob.init(this.originalConfig); 之后执行，这样可以直接快速判断是否是querySql 模式
-			dealHint(this.originalConfig);
-		}
+        private Configuration originalConfig = null;
+        private CommonRdbmsReader.Job commonRdbmsReaderJob;
 
         @Override
-        public void preCheck(){
-            init();
-            this.commonRdbmsReaderJob.preCheck(this.originalConfig,DATABASE_TYPE);
+        public void init() {
+            this.originalConfig = super.getPluginJobConf();
+
+            dealFetchSize(this.originalConfig);
+
+            this.commonRdbmsReaderJob = new CommonRdbmsReader.Job(DATABASE_TYPE);
+            this.commonRdbmsReaderJob.init(this.originalConfig);
+
+            // 注意：要在 this.commonRdbmsReaderJob.init(this.originalConfig);
+            // 之后执行，这样可以直接快速判断是否是querySql 模式
+            dealHint(this.originalConfig);
         }
 
-		@Override
-		public List<Configuration> split(int adviceNumber) {
-			return this.commonRdbmsReaderJob.split(this.originalConfig,
-					adviceNumber);
-		}
+        @Override
+        public void preCheck() {
+            init();
+            this.commonRdbmsReaderJob.preCheck(this.originalConfig, DATABASE_TYPE);
+        }
 
-		@Override
-		public void post() {
-			this.commonRdbmsReaderJob.post(this.originalConfig);
-		}
+        @Override
+        public List<Configuration> split(int adviceNumber) {
+            return this.commonRdbmsReaderJob.split(this.originalConfig, adviceNumber);
+        }
 
-		@Override
-		public void destroy() {
-			this.commonRdbmsReaderJob.destroy(this.originalConfig);
-		}
+        @Override
+        public void post() {
+            this.commonRdbmsReaderJob.post(this.originalConfig);
+        }
 
-		private void dealFetchSize(Configuration originalConfig) {
-			int fetchSize = originalConfig.getInt(
-					com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant.FETCH_SIZE,
-					Constant.DEFAULT_FETCH_SIZE);
-			if (fetchSize < 1) {
-				throw DataXException
-						.asDataXException(DBUtilErrorCode.REQUIRED_VALUE,
-								String.format("您配置的 fetchSize 有误，fetchSize:[%d] 值不能小于 1.",
-										fetchSize));
-			}
-			originalConfig.set(
-					com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant.FETCH_SIZE,
-					fetchSize);
-		}
+        @Override
+        public void destroy() {
+            this.commonRdbmsReaderJob.destroy(this.originalConfig);
+        }
 
-		private void dealHint(Configuration originalConfig) {
-			String hint = originalConfig.getString(RdbmsReaderKey.HINT);
-			if (StringUtils.isNotBlank(hint)) {
-				boolean isTableMode = originalConfig.getBool(com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant.IS_TABLE_MODE).booleanValue();
-				if(!isTableMode){
-					throw DataXException.asDataXException(OracleReaderErrorCode.HINT_ERROR, "当且仅当非 querySql 模式读取 oracle 时才能配置 HINT.");
-				}
-			}
-		}
-	}
+        private void dealFetchSize(Configuration originalConfig) {
+            int fetchSize = originalConfig.getInt(RdbmsReaderConstant.FETCH_SIZE, Constant.DEFAULT_FETCH_SIZE);
+            if (fetchSize < 1) {
+                throw DataXException.asDataXException(DBUtilErrorCode.REQUIRED_VALUE,
+                        String.format("您配置的 fetchSize 有误，fetchSize:[%d] 值不能小于 1.", fetchSize));
+            }
+            originalConfig.set(RdbmsReaderConstant.FETCH_SIZE, fetchSize);
+        }
 
-	public static class Task extends Reader.Task {
+        private void dealHint(Configuration originalConfig) {
+            String hint = originalConfig.getString(RdbmsReaderKey.HINT);
+            if (StringUtils.isNotBlank(hint)) {
+                boolean isTableMode = originalConfig.getBool(RdbmsReaderConstant.IS_TABLE_MODE).booleanValue();
+                if (!isTableMode) {
+                    throw DataXException.asDataXException(OracleReaderErrorCode.HINT_ERROR,
+                            "当且仅当非 querySql 模式读取 oracle 时才能配置 HINT.");
+                }
+            }
+        }
+    }
 
-		private Configuration readerSliceConfig;
-		private CommonRdbmsReader.Task commonRdbmsReaderTask;
+    public static class Task extends Reader.Task {
 
-		@Override
-		public void init() {
-			this.readerSliceConfig = super.getPluginJobConf();
-			this.commonRdbmsReaderTask = new CommonRdbmsReader.Task(
-					DATABASE_TYPE ,super.getTaskGroupId(), super.getTaskId());
-			this.commonRdbmsReaderTask.init(this.readerSliceConfig);
-		}
+        private Configuration readerSliceConfig;
+        private CommonRdbmsReader.Task commonRdbmsReaderTask;
 
-		@Override
-		public void startRead(RecordSender recordSender) {
-			int fetchSize = this.readerSliceConfig
-					.getInt(com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant.FETCH_SIZE);
+        @Override
+        public void init() {
+            this.readerSliceConfig = super.getPluginJobConf();
+            this.commonRdbmsReaderTask = new CommonRdbmsReader.Task(DATABASE_TYPE, super.getTaskGroupId(),
+                    super.getTaskId());
+            this.commonRdbmsReaderTask.init(this.readerSliceConfig);
+        }
 
-			this.commonRdbmsReaderTask.startRead(this.readerSliceConfig,
-					recordSender, super.getTaskPluginCollector(), fetchSize);
-		}
+        @Override
+        public void startRead(RecordSender recordSender) {
+            int fetchSize = this.readerSliceConfig.getInt(RdbmsReaderConstant.FETCH_SIZE);
 
-		@Override
-		public void post() {
-			this.commonRdbmsReaderTask.post(this.readerSliceConfig);
-		}
+            this.commonRdbmsReaderTask.startRead(this.readerSliceConfig, recordSender, super.getTaskPluginCollector(),
+                    fetchSize);
+        }
 
-		@Override
-		public void destroy() {
-			this.commonRdbmsReaderTask.destroy(this.readerSliceConfig);
-		}
+        @Override
+        public void post() {
+            this.commonRdbmsReaderTask.post(this.readerSliceConfig);
+        }
 
-	}
+        @Override
+        public void destroy() {
+            this.commonRdbmsReaderTask.destroy(this.readerSliceConfig);
+        }
+
+    }
 
 }

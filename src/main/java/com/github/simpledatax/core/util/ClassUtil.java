@@ -26,6 +26,26 @@ public final class ClassUtil {
 			throw new IllegalArgumentException(e);
 		}
 	}
+    /**
+     * 通过反射构造类对象
+     * 
+     * @param clazz 
+     * @param t
+     *            反射类的类型Class对象
+     * @param args
+     *            构造参数
+     * 
+     * */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static <T> T instantiate(Class clazz, Class<T> t,
+            Object... args) {
+        try {
+            Constructor constructor = (Constructor) clazz.getConstructor(ClassUtil.toClassType(args));
+            return (T) constructor.newInstance(args);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
 
 	private static Class<?>[] toClassType(Object[] args) {
 		Class<?>[] clazzs = new Class<?>[args.length];

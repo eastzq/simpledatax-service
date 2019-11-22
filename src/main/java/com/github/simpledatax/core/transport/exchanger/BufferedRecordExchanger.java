@@ -10,6 +10,7 @@ import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.plugin.TaskPluginCollector;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.transport.channel.Channel;
+import com.github.simpledatax.core.transport.record.DefaultRecord;
 import com.github.simpledatax.core.transport.record.TerminateRecord;
 import com.github.simpledatax.core.util.FrameworkErrorCode;
 import com.github.simpledatax.core.util.container.CoreConstant;
@@ -58,10 +59,7 @@ public class BufferedRecordExchanger implements RecordSender, RecordReceiver {
 				CoreConstant.DATAX_CORE_TRANSPORT_CHANNEL_CAPACITY_BYTE, 8 * 1024 * 1024);
 
 		try {
-			BufferedRecordExchanger.RECORD_CLASS = ((Class<? extends Record>) Class
-					.forName(configuration.getString(
-                            CoreConstant.DATAX_CORE_TRANSPORT_RECORD_CLASS,
-                            "com.github.simpledatax.core.transport.record.DefaultRecord")));
+			BufferedRecordExchanger.RECORD_CLASS = DefaultRecord.class;
 		} catch (Exception e) {
 			throw DataXException.asDataXException(
 					FrameworkErrorCode.CONFIG_ERROR, e);
