@@ -8,7 +8,7 @@ import com.github.simpledatax.api.dto.CommonDbWriter;
 import com.github.simpledatax.api.dto.DataCollectJob;
 import com.github.simpledatax.api.dto.DataCollectResult;
 
-public class MySql2MySqlTest2 {
+public class MySql2MySqlTest {
 
     public static void main(String[] args) throws DxException {
         DataCollectJob job = new DataCollectJob();
