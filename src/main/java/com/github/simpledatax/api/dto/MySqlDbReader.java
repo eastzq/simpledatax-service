@@ -1,9 +1,7 @@
 package com.github.simpledatax.api.dto;
 
-public class CommonDbWriter implements DataCollectWriter {
-    /**
-     * 
-     */
+public class MySqlDbReader implements DataCollectReader {
+
     private static final long serialVersionUID = 1L;
 
     /** 数据库实例IP */
@@ -26,6 +24,15 @@ public class CommonDbWriter implements DataCollectWriter {
 
     /** 字段串 */
     private String columnStrs;
+
+    /** 过滤脚本 */
+    private String sqlWhere;
+
+    /** 定制查询脚本 优先级高于表格 */
+    private String sqlScript;
+
+    /** 分片主键 仅当table模式有效，sql脚本无效 */
+    private String splitPk;
 
     public String getDbIp() {
         return dbIp;
@@ -83,9 +90,33 @@ public class CommonDbWriter implements DataCollectWriter {
         this.columnStrs = columnStrs;
     }
 
+    public String getSqlWhere() {
+        return sqlWhere;
+    }
+
+    public void setSqlWhere(String sqlWhere) {
+        this.sqlWhere = sqlWhere;
+    }
+
+    public String getSqlScript() {
+        return sqlScript;
+    }
+
+    public void setSqlScript(String sqlScript) {
+        this.sqlScript = sqlScript;
+    }
+
+    public String getSplitPk() {
+        return splitPk;
+    }
+
+    public void setSplitPk(String splitPk) {
+        this.splitPk = splitPk;
+    }
+
     @Override
-    public DataPluginEnum getWriterType() {
-        return DataPluginEnum.RMDBS;
+    public DataPluginEnum getPluginName() {
+        return DataPluginEnum.RMDBS_READER;
     }
 
 }

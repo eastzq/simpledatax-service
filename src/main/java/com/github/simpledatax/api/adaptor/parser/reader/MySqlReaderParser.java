@@ -4,22 +4,22 @@ import java.text.MessageFormat;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.github.simpledatax.api.adaptor.PluginResouce;
 import com.github.simpledatax.api.adaptor.exception.DxException;
 import com.github.simpledatax.api.adaptor.parser.intf.Parser;
-import com.github.simpledatax.api.dto.CommonDbReader;
+import com.github.simpledatax.api.dto.MySqlDbReader;
 import com.github.simpledatax.api.dto.DataCollectPlugin;
 import com.github.simpledatax.common.util.Configuration;
+import com.github.simpledatax.plugin.PluginResouce;
 
 public class MySqlReaderParser implements Parser {
 
     @Override
     public Configuration parse(DataCollectPlugin plugin) throws DxException {
-        CommonDbReader reader = null;
-        if (!(plugin instanceof CommonDbReader)) {
+        MySqlDbReader reader = null;
+        if (!(plugin instanceof MySqlDbReader)) {
             throw new DxException("插件对象转换异常，当前实例不是DBDataCollectReader类型！");
         } else {
-            reader = (CommonDbReader) plugin;
+            reader = (MySqlDbReader) plugin;
         }
         Configuration configuration = Configuration.newDefault();
         configuration.set("name", PluginResouce.MYSQL_READER.getName());

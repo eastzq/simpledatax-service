@@ -7,16 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.simpledatax.api.adaptor.exception.DxException;
-import com.github.simpledatax.api.adaptor.parser.intf.Parser;
-import com.github.simpledatax.api.adaptor.parser.reader.MySqlReaderParser;
-import com.github.simpledatax.api.adaptor.parser.writer.MySqlWriterParser;
+import com.github.simpledatax.api.adaptor.parser.ParserCache;
 import com.github.simpledatax.api.adaptor.util.ResourceUtil;
 import com.github.simpledatax.api.dto.DataCollectJob;
 import com.github.simpledatax.api.dto.DataCollectReader;
 import com.github.simpledatax.api.dto.DataCollectWriter;
-import com.github.simpledatax.api.dto.DataPluginEnum;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.util.container.CoreConstant;
+import com.github.simpledatax.plugin.PluginResouce;
 
 /**
  * 配置对象初始化类！
@@ -52,7 +50,7 @@ public class ConfigHelper {
      * @return
      * @throws DxException
      */
-    public static Configuration parseJob(DataCollectJob job) throws DxException {
+    public static Configuration parseJob(DataCollectJob job) throws Exception {
         Configuration mainConf = Configuration.from(CORE_JSON);
         mainConf.merge(Configuration.from(ConfigHelper.BASE_JSON), false);
         mainConf.merge(plugins, false);
@@ -67,7 +65,7 @@ public class ConfigHelper {
         mainConf.set(CoreConstant.DATAX_JOB_CONTENT_WRITER, writerConf.getInternal());
         return mainConf;
     }
-    
+
     /**
      * 撘建架子，将输入参数转换成datax默认的配置对象。
      * 
@@ -75,14 +73,14 @@ public class ConfigHelper {
      * @return
      * @throws DxException
      */
-    public static Configuration parseJob(String baseJson,int channelNum) throws DxException {
+    public static Configuration parseJob(String baseJson, int channelNum) throws DxException {
         Configuration mainConf = Configuration.from(CORE_JSON);
         mainConf.merge(Configuration.from(baseJson), false);
         mainConf.merge(plugins, false);
         mainConf.set(CoreConstant.DATAX_CORE_TRANSPORT_CHANNEL_CHANNELNUM, channelNum);
         return mainConf;
     }
-    
+
     /**
      * 初始化datax配置
      */
@@ -104,7 +102,7 @@ public class ConfigHelper {
             }
         } catch (Exception e) {
             logger.error("初始化采集模块配置失败，ConfigHelper类初始化失败，请检查配置！");
-            throw new RuntimeException("读取配置文件出现异常，请检查目标目录是否存在配置文件！", e);
+            throw new DxException("读取配置文件出现异常，请检查目标目录是否存在配置文件！", e);
         } finally {
             IOUtils.closeQuietly(is1);
             IOUtils.closeQuietly(is2);
@@ -123,25 +121,13 @@ public class ConfigHelper {
     }
 
     // 转换reader
-    private static Configuration parseReader(DataCollectReader reader) throws DxException {
-        Parser parser = null;
-        if (reader.getReaderType() == DataPluginEnum.RMDBS) {
-            parser = new MySqlReaderParser();
-            return parser.parse(reader);
-        } else {
-            throw new DxException("找不到对应的parser！");
-        }
+    private static Configuration parseReader(DataCollectReader reader) throws Exception {
+        return ParserCache.parse(reader);
     }
 
     // 转换writer
-    private static Configuration parseWriter(DataCollectWriter writer) throws DxException {
-        Parser parser = null;
-        if (writer.getWriterType() == DataPluginEnum.RMDBS) {
-            parser = new MySqlWriterParser();
-            return parser.parse(writer);
-        } else {
-            throw new DxException("找不到对应的parser！");
-        }
+    private static Configuration parseWriter(DataCollectWriter writer) throws Exception {
+        return ParserCache.parse(writer);
     }
 
 }

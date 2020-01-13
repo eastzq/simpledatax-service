@@ -1,6 +1,6 @@
 package com.github.simpledatax.api.adaptor.exception;
 
-public class DxException extends Exception{
+public class DxException extends RuntimeException{
 
 	/**
 	 * 

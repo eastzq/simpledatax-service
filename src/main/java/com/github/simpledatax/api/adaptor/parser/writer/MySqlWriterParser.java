@@ -8,25 +8,25 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 
 import com.github.simpledatax.api.adaptor.ConfigHelper;
-import com.github.simpledatax.api.adaptor.PluginResouce;
 import com.github.simpledatax.api.adaptor.exception.DxException;
 import com.github.simpledatax.api.adaptor.parser.intf.Parser;
 import com.github.simpledatax.api.adaptor.util.PropertiesKey;
-import com.github.simpledatax.api.dto.CommonDbWriter;
+import com.github.simpledatax.api.dto.MySqlDbWriter;
 import com.github.simpledatax.api.dto.DataCollectPlugin;
 import com.github.simpledatax.api.dto.DataPluginEnum;
 import com.github.simpledatax.common.util.Configuration;
+import com.github.simpledatax.plugin.PluginResouce;
 import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
 
 public class MySqlWriterParser implements Parser {
 
     @Override
     public Configuration parse(DataCollectPlugin plugin) throws DxException {
-        CommonDbWriter writer = null;
-        if (!(plugin instanceof CommonDbWriter)) {
+        MySqlDbWriter writer = null;
+        if (!(plugin instanceof MySqlDbWriter)) {
             throw new DxException("插件对象转换异常，当前实例不是DBDataCollectWriter类型！");
         } else {
-            writer = (CommonDbWriter) plugin;
+            writer = (MySqlDbWriter) plugin;
         }
         Configuration configuration = Configuration.newDefault();
         configuration.set("name", PluginResouce.RDBMS_WRITER.getName());

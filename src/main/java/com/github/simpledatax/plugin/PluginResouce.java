@@ -1,11 +1,11 @@
-package com.github.simpledatax.api.adaptor;
+package com.github.simpledatax.plugin;
 
 public enum PluginResouce {
     RDBMS_READER("reader","rdbmsreader", "com.github.simpledatax.plugin.reader.rdbmsreader.RdbmsReader",""),
 	MYSQL_READER("reader","mysqlreader", "com.github.simpledatax.plugin.reader.mysql.MySqlReader",""),   
 	RDBMS_WRITER("writer","rdbmswriter", "com.github.simpledatax.plugin.writer.rdbmswriter.RdbmsWriter","");
     
-    private PluginResouce(String type, String name, String className, String desc) {
+    private PluginResouce(String type, String name, String className,String desc) {
         this.type = type;
         this.name = name;
         this.className = className;
