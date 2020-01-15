@@ -21,7 +21,7 @@ public static void main(String[] args) throws DxException {
     DataCollectJob job = new DataCollectJob();
     job.setJobId(1);
     job.setChannelNum(2);
-    CommonDbReader reader = new CommonDbReader();
+    MySqlReader reader = new MySqlReader();
     reader.setDbIp("192.168.0.120");
     reader.setDbPort("3306");
     reader.setDbInstanceName("test");
@@ -32,25 +32,25 @@ public static void main(String[] args) throws DxException {
     reader.setColumnStrs("COL1,COL2,COL3,COL4");
     job.setReader(reader);
 
-    CommonDbWriter writer = new CommonDbWriter();
+    MySqlWriter writer = new MySqlWriter();
     writer.setDbIp("192.168.0.121");
     writer.setDbPort("3306");
     writer.setDbUser("root");
     writer.setDbPassword("root");
-    writer.setTableName("mysql_load_test");
+    writer.setTableName("mysql_load_test1");
     writer.setColumnStrs("COL1,COL2,COL3,COL4");
     writer.setDbInstanceName("test");
     job.setWriter(writer);
     DxService service = new DxService();
     DataCollectResult result = service.collect(job);
-    System.out.println(JSON.toJSONString(result));
+    System.out.println(JSON.toJSONString(result)); 
 }
 ```
 
 
 #### 下一步方向
 - [x] 去除配置项的class类和代码里的全类名。
-- [ ] 新增定时报告打印。
+- [x] 新增定时报告打印。
 - [ ] 新增分片api。
 - [ ] 新增执行任务时支持以单一分片执行任务。
 - [ ] 新增终止采集api。
