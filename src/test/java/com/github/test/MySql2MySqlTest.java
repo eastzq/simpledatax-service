@@ -30,7 +30,7 @@ public class MySql2MySqlTest {
         writer.setDbPort("3306");
         writer.setDbUser("root");
         writer.setDbPassword("root");
-        writer.setTableName("mysql_load_test");
+        writer.setTableName("mysql_load_test1");
         writer.setColumnStrs("COL1,COL2,COL3,COL4");
         writer.setDbInstanceName("test");
         job.setWriter(writer);

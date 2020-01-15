@@ -18,10 +18,7 @@ public class Communicator {
         return jobId;
     }
 
-    public Communicator() {
-    }
-
-    public Map<Integer, Communication> getTaskCommunicationMap() {
+    private Map<Integer, Communication> getTaskCommunicationMap() {
         return taskCommunicationMap;
     }
 
@@ -30,15 +27,6 @@ public class Communicator {
             int taskId = taskConfig.getInt(CoreConstant.TASK_ID);
             this.taskCommunicationMap.put(taskId, new Communication());
         }
-    }
-
-    public Communication collectFromTask() {
-        Communication communication = new Communication();
-        communication.setState(State.SUCCEEDED);
-        for (Communication taskCommunication : this.taskCommunicationMap.values()) {
-            communication.mergeFrom(taskCommunication);
-        }
-        return communication;
     }
 
     public Communication getTaskCommunication(Integer taskId) {
@@ -50,7 +38,12 @@ public class Communicator {
     }
 
     public Communication collect() {
-        return this.collectFromTask();
+        Communication communication = new Communication();
+        communication.setState(State.SUCCEEDED);
+        for (Communication taskCommunication : this.taskCommunicationMap.values()) {
+            communication.mergeFrom(taskCommunication);
+        }
+        return communication;
     }
 
     public void report(Communication communication) {
@@ -66,11 +59,11 @@ public class Communicator {
         return communication.getState();
     }
 
-    public  Communication getCommunication(Integer id) {
+    public Communication getCommunication(Integer id) {
         return this.taskCommunicationMap.get(id);
     }
 
-    public  Map<Integer, Communication> getCommunicationMap(){
+    public Map<Integer, Communication> getCommunicationMap() {
         return this.getTaskCommunicationMap();
     }
 
@@ -80,10 +73,5 @@ public class Communicator {
     }
 
     public void reportVmInfo() {
-        /*
-         * long now = System.currentTimeMillis(); //每5分钟打印一次 if(now - lastReportTime >=
-         * 300000) { //当前仅打印 if (vmInfo != null) { vmInfo.getDelta(true); }
-         * lastReportTime = now; }
-         */
     }
 }

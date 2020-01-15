@@ -24,7 +24,6 @@ import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.statistics.communication.Communication;
 import com.github.simpledatax.core.statistics.communication.CommunicationTool;
 import com.github.simpledatax.core.statistics.communication.Communicator;
-import com.github.simpledatax.core.statistics.plugin.task.AbstractTaskPluginCollector;
 import com.github.simpledatax.core.statistics.plugin.task.StdoutPluginCollector;
 import com.github.simpledatax.core.taskgroup.runner.AbstractRunner;
 import com.github.simpledatax.core.taskgroup.runner.ReaderRunner;
@@ -34,7 +33,6 @@ import com.github.simpledatax.core.transport.channel.memory.MemoryChannel;
 import com.github.simpledatax.core.transport.exchanger.BufferedRecordExchanger;
 import com.github.simpledatax.core.transport.exchanger.BufferedRecordTransformerExchanger;
 import com.github.simpledatax.core.transport.transformer.TransformerExecution;
-import com.github.simpledatax.core.util.ClassUtil;
 import com.github.simpledatax.core.util.FrameworkErrorCode;
 import com.github.simpledatax.core.util.TransformerUtil;
 import com.github.simpledatax.core.util.container.CoreConstant;
@@ -61,6 +59,12 @@ public class TaskGroupScheduler {
 
     private List<TaskExecutor> runTasks = null; // 正在运行task
     private Map<Integer, Long> taskStartTimeMap = new HashMap<Integer, Long>();
+    private List<Configuration> taskConfigs;
+
+    private long lastReportTimeStamp;
+    private Communication lastCommunication = new Communication();
+    //打印报告间隔时间！
+    private long reportIntervalInMillSec = 10000;
 
     public TaskGroupScheduler(Configuration configuration, Communicator communicator) {
         this.configuration = configuration;
@@ -79,13 +83,15 @@ public class TaskGroupScheduler {
 
     public Communication schedule(int channelNumber) {
         try {
-            List<Configuration> taskConfigs = this.configuration.getListConfiguration(CoreConstant.DATAX_JOB_CONTENT);
+            taskConfigs = this.configuration.getListConfiguration(CoreConstant.DATAX_JOB_CONTENT);
             if (LOG.isDebugEnabled()) {
                 LOG.debug("taskGroup[{}]'s task configs[{}]", this.taskGroupId, JSON.toJSONString(taskConfigs));
             }
             int taskCount = taskConfigs.size();
-            LOG.info(String.format("taskGroupId=[%d] start [%d] channels for [%d] tasks.", this.taskGroupId,
-                    channelNumber, taskCount));
+            if (LOG.isInfoEnabled()) {
+                LOG.info(String.format("taskGroupId=[%d] start [%d] channels for [%d] tasks.", this.taskGroupId,
+                        channelNumber, taskCount));
+            }
             this.communicator.registerCommunication(taskConfigs);
             List<Configuration> taskQueue = buildRemainTasks(taskConfigs); // 待运行task列表
             runTasks = new ArrayList<TaskExecutor>(channelNumber); // 正在运行task
@@ -143,9 +149,6 @@ public class TaskGroupScheduler {
                 taskQueueIterator.remove();
                 // 保存到任务队列中。
                 runTasks.add(taskExecutor);
-                // 增加task到runTasks列表，因此在monitor里注册。
-                LOG.info("taskGroup[{}] taskId[{}] attemptCount[{}] is started", this.taskGroupId, taskId,
-                        attemptCount);
             }
             Iterator<TaskExecutor> runTaskIterator = runTasks.iterator();
             while (runTaskIterator.hasNext()) {
@@ -153,7 +156,7 @@ public class TaskGroupScheduler {
                 boolean isTaskSuccess = false;
                 boolean isTimeOut = false;
                 try {
-                    isTaskSuccess = task.getTaskResult(500);
+                    isTaskSuccess = task.getTaskResult(1000);
                 } catch (TimeoutException e) {
                     isTimeOut = true;
                     if (LOG.isTraceEnabled()) {
@@ -172,21 +175,29 @@ public class TaskGroupScheduler {
                     return false;
                 }
             }
-            // 说明有未完成的任务。重新遍历
-            if (runTasks.size() == 0 && taskQueue.size() == 0) {
+            // 说明任务执行完毕
+            if (runTasks.isEmpty() && taskQueue.isEmpty()) {
                 break;
+            }
+            // 新增任务执行情况打印
+            if (LOG.isDebugEnabled()) {
+                reportCommunitcation();
             }
         }
         return true;
     }
 
-    private Map<Integer, Configuration> buildTaskConfigMap(List<Configuration> configurations) {
-        Map<Integer, Configuration> map = new HashMap<Integer, Configuration>();
-        for (Configuration taskConfig : configurations) {
-            int taskId = taskConfig.getInt(CoreConstant.TASK_ID);
-            map.put(taskId, taskConfig);
+    public void reportCommunitcation() {
+        long now = System.currentTimeMillis();
+        if (now - lastReportTimeStamp > reportIntervalInMillSec) {
+            Communication nowCommunication = this.communicator.collect();
+            nowCommunication.setTimestamp(System.currentTimeMillis());
+            Communication reportCommunication = CommunicationTool.getReportCommunication(nowCommunication,
+                    lastCommunication, taskConfigs.size());
+            LOG.info(CommunicationTool.Stringify.getSnapshot(reportCommunication));
+            lastReportTimeStamp = now;
+            lastCommunication = nowCommunication;
         }
-        return map;
     }
 
     private List<Configuration> buildRemainTasks(List<Configuration> configurations) {
@@ -195,14 +206,6 @@ public class TaskGroupScheduler {
             remainTasks.add(taskConfig);
         }
         return remainTasks;
-    }
-
-    private Communication reportTasksCommunication(Communication oldCommunication, int taskCount) {
-        Communication nowTaskGroupContainerCommunication = this.communicator.collect();
-        nowTaskGroupContainerCommunication.setTimestamp(System.currentTimeMillis());
-        Communication reportCommunication = CommunicationTool.getReportCommunication(nowTaskGroupContainerCommunication,
-                oldCommunication, taskCount);
-        return reportCommunication;
     }
 
     /**
