@@ -3,6 +3,7 @@ package com.github.simpledatax.plugin;
 public enum PluginResouce {
     RDBMS_READER("reader","rdbmsreader", "com.github.simpledatax.plugin.reader.rdbmsreader.RdbmsReader",""),
 	MYSQL_READER("reader","mysqlreader", "com.github.simpledatax.plugin.reader.mysql.MySqlReader",""),   
+    MYSQL_WRITER("writer", "mysqlwriter", "com.github.simpledatax.plugin.writer.mysqlwriter.MysqlWriter",""),
 	RDBMS_WRITER("writer","rdbmswriter", "com.github.simpledatax.plugin.writer.rdbmswriter.RdbmsWriter","");
     
     private PluginResouce(String type, String name, String className,String desc) {

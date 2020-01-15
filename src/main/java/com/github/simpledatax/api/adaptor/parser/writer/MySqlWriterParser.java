@@ -29,7 +29,7 @@ public class MySqlWriterParser implements Parser {
             writer = (MySqlWriter) plugin;
         }
         Configuration configuration = Configuration.newDefault();
-        configuration.set("name", PluginResouce.RDBMS_WRITER.getName());
+        configuration.set("name", PluginResouce.MYSQL_WRITER.getName());
         configuration.set("parameter.username", writer.getDbUser());
         configuration.set("parameter.password", writer.getDbPassword());
 

@@ -371,8 +371,7 @@ public class CommonRdbmsWriter {
                         preparedStatement = fillPreparedStatement(preparedStatement, record);
                         preparedStatement.execute();
                     } catch (SQLException e) {
-                        LOG.debug(e.toString());
-
+                        LOG.error(e.toString());
                         this.taskPluginCollector.collectDirtyRecord(record, e);
                     } finally {
                         // 最后不要忘了关闭 preparedStatement
