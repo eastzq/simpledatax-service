@@ -3,8 +3,8 @@ package com.github.test;
 import com.alibaba.fastjson.JSON;
 import com.github.simpledatax.api.DxService;
 import com.github.simpledatax.api.adaptor.exception.DxException;
-import com.github.simpledatax.api.dto.MySqlDbReader;
-import com.github.simpledatax.api.dto.MySqlDbWriter;
+import com.github.simpledatax.api.dto.reader.MySqlReader;
+import com.github.simpledatax.api.dto.writer.MySqlWriter;
 import com.github.simpledatax.api.dto.DataCollectJob;
 import com.github.simpledatax.api.dto.DataCollectResult;
 
@@ -14,7 +14,7 @@ public class MySql2MySqlTest {
         DataCollectJob job = new DataCollectJob();
         job.setJobId(1);
         job.setChannelNum(2);
-        MySqlDbReader reader = new MySqlDbReader();
+        MySqlReader reader = new MySqlReader();
         reader.setDbIp("192.168.0.120");
         reader.setDbPort("3306");
         reader.setDbInstanceName("test");
@@ -25,7 +25,7 @@ public class MySql2MySqlTest {
         reader.setColumnStrs("COL1,COL2,COL3,COL4");
         job.setReader(reader);
 
-        MySqlDbWriter writer = new MySqlDbWriter();
+        MySqlWriter writer = new MySqlWriter();
         writer.setDbIp("192.168.0.121");
         writer.setDbPort("3306");
         writer.setDbUser("root");

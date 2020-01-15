@@ -1,9 +1,10 @@
-package com.github.simpledatax.api.dto;
+package com.github.simpledatax.api.dto.reader;
 
-public class MySqlDbWriter implements DataCollectWriter {
-    /**
-     * 
-     */
+import com.github.simpledatax.api.dto.DataCollectReader;
+import com.github.simpledatax.api.dto.DataPluginEnum;
+
+public class MySqlReader implements DataCollectReader {
+
     private static final long serialVersionUID = 1L;
 
     /** 数据库实例IP */
@@ -26,6 +27,15 @@ public class MySqlDbWriter implements DataCollectWriter {
 
     /** 字段串 */
     private String columnStrs;
+
+    /** 过滤脚本 */
+    private String sqlWhere;
+
+    /** 定制查询脚本 优先级高于表格 */
+    private String sqlScript;
+
+    /** 分片主键 仅当table模式有效，sql脚本无效 */
+    private String splitPk;
 
     public String getDbIp() {
         return dbIp;
@@ -81,6 +91,30 @@ public class MySqlDbWriter implements DataCollectWriter {
 
     public void setColumnStrs(String columnStrs) {
         this.columnStrs = columnStrs;
+    }
+
+    public String getSqlWhere() {
+        return sqlWhere;
+    }
+
+    public void setSqlWhere(String sqlWhere) {
+        this.sqlWhere = sqlWhere;
+    }
+
+    public String getSqlScript() {
+        return sqlScript;
+    }
+
+    public void setSqlScript(String sqlScript) {
+        this.sqlScript = sqlScript;
+    }
+
+    public String getSplitPk() {
+        return splitPk;
+    }
+
+    public void setSplitPk(String splitPk) {
+        this.splitPk = splitPk;
     }
 
     @Override

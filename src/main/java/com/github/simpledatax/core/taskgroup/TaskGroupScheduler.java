@@ -156,8 +156,8 @@ public class TaskGroupScheduler {
                     isTaskSuccess = task.getTaskResult(500);
                 } catch (TimeoutException e) {
                     isTimeOut = true;
-                    if (LOG.isDebugEnabled()) {
-                        LOG.debug("请求task结果超时---job[{}]，taskGroup[{}]，task[{}]，准备重试！", getJobId(), getTaskGroupId(),
+                    if (LOG.isTraceEnabled()) {
+                        LOG.trace("请求task结果超时---job[{}]，taskGroup[{}]，task[{}]，准备重试！", getJobId(), getTaskGroupId(),
                                 task.getTaskId());
                     }
                 }
