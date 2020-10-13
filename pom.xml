@@ -59,7 +59,7 @@
 		<commons-net.version>3.3</commons-net.version>
 		<commons-dbcp.version>1.2.2</commons-dbcp.version>
 
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
