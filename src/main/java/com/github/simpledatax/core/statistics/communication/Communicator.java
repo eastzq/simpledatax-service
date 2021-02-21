@@ -1,12 +1,12 @@
 package com.github.simpledatax.core.statistics.communication;
 
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.util.container.CoreConstant;
 import com.github.simpledatax.dataxservice.face.domain.enums.State;
+
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Communicator {
 

@@ -1,8 +1,7 @@
 package com.github.simpledatax.core;
 
-import org.apache.commons.lang.Validate;
-
 import com.github.simpledatax.common.util.Configuration;
+import org.apache.commons.lang.Validate;
 
 /**
  * 执行容器的抽象类，持有该容器全局的配置 configuration

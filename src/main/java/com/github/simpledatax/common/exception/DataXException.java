@@ -1,9 +1,9 @@
 package com.github.simpledatax.common.exception;
 
+import com.github.simpledatax.common.spi.ErrorCode;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
-
-import com.github.simpledatax.common.spi.ErrorCode;
 
 public class DataXException extends RuntimeException {
 

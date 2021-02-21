@@ -1,10 +1,5 @@
 package com.github.simpledatax.api;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.MDC;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.api.adaptor.ConfigHelper;
 import com.github.simpledatax.api.adaptor.exception.DxException;
 import com.github.simpledatax.api.adaptor.util.PropertiesKey;
@@ -13,6 +8,10 @@ import com.github.simpledatax.api.dto.DataCollectJob;
 import com.github.simpledatax.api.dto.DataCollectResult;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.Engine;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.MDC;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DxService {
     private static final Logger LOG = LoggerFactory.getLogger(DxService.class);

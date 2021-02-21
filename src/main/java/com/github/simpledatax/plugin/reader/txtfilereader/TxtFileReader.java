@@ -1,26 +1,5 @@
 package com.github.simpledatax.plugin.reader.txtfilereader;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.nio.charset.UnsupportedCharsetException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.regex.Pattern;
-
-import org.apache.commons.io.Charsets;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.BooleanUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.spi.Reader;
@@ -30,6 +9,20 @@ import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredRead
 import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredStorageReaderErrorCode;
 import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredStorageReaderUtil;
 import com.google.common.collect.Sets;
+import org.apache.commons.io.Charsets;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.nio.charset.UnsupportedCharsetException;
+import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * Created by haiwei.luo on 14-9-20.

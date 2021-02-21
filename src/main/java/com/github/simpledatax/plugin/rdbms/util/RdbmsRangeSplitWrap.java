@@ -1,8 +1,7 @@
 package com.github.simpledatax.plugin.rdbms.util;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.github.simpledatax.common.util.RangeSplitUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

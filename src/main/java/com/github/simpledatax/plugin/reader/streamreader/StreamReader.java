@@ -6,7 +6,6 @@ import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.spi.Reader;
 import com.github.simpledatax.common.util.Configuration;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;

@@ -1,19 +1,5 @@
 package com.github.simpledatax.core.job;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-import org.apache.log4j.MDC;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.alibaba.fastjson.JSON;
 import com.github.simpledatax.api.adaptor.util.PropertiesKey;
 import com.github.simpledatax.api.adaptor.util.ResourceUtil;
@@ -34,6 +20,15 @@ import com.github.simpledatax.core.util.FrameworkErrorCode;
 import com.github.simpledatax.core.util.container.CoreConstant;
 import com.github.simpledatax.core.util.container.LoadUtil;
 import com.github.simpledatax.dataxservice.face.domain.enums.State;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
+import org.apache.log4j.MDC;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by jingxing on 14-8-24.

@@ -1,12 +1,12 @@
 package com.github.simpledatax.core.transport.transformer;
 
-import java.util.Arrays;
-
 import com.github.simpledatax.common.element.Column;
 import com.github.simpledatax.common.element.Record;
 import com.github.simpledatax.common.element.StringColumn;
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.transformer.Transformer;
+
+import java.util.Arrays;
 
 /**
  * no comments.

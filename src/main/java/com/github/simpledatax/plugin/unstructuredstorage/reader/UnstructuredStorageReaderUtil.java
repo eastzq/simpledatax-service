@@ -1,19 +1,15 @@
 package com.github.simpledatax.plugin.unstructuredstorage.reader;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.UnsupportedCharsetException;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.csvreader.CsvReader;
+import com.github.simpledatax.common.element.*;
+import com.github.simpledatax.common.exception.DataXException;
+import com.github.simpledatax.common.plugin.RecordSender;
+import com.github.simpledatax.common.plugin.TaskPluginCollector;
+import com.github.simpledatax.common.util.Configuration;
+import io.airlift.compress.snappy.SnappyFramedInputStream;
 import org.anarres.lzo.LzoDecompressor1x_safe;
 import org.anarres.lzo.LzoInputStream;
 import org.apache.commons.beanutils.BeanUtils;
@@ -26,23 +22,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
-import com.csvreader.CsvReader;
-import com.github.simpledatax.common.element.BoolColumn;
-import com.github.simpledatax.common.element.Column;
-import com.github.simpledatax.common.element.DateColumn;
-import com.github.simpledatax.common.element.DoubleColumn;
-import com.github.simpledatax.common.element.LongColumn;
-import com.github.simpledatax.common.element.Record;
-import com.github.simpledatax.common.element.StringColumn;
-import com.github.simpledatax.common.exception.DataXException;
-import com.github.simpledatax.common.plugin.RecordSender;
-import com.github.simpledatax.common.plugin.TaskPluginCollector;
-import com.github.simpledatax.common.util.Configuration;
-
-import io.airlift.compress.snappy.SnappyFramedInputStream;
+import java.io.*;
+import java.nio.charset.UnsupportedCharsetException;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 public class UnstructuredStorageReaderUtil {
     private static final Logger LOG = LoggerFactory.getLogger(UnstructuredStorageReaderUtil.class);

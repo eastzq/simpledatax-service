@@ -1,11 +1,10 @@
 package com.github.simpledatax.core.container.util;
 
-import org.apache.commons.lang.Validate;
-import org.apache.commons.lang3.StringUtils;
-
 import com.github.simpledatax.common.constant.CommonConstant;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.util.container.CoreConstant;
+import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 

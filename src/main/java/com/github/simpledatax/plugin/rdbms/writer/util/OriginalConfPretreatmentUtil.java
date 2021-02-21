@@ -1,23 +1,17 @@
 package com.github.simpledatax.plugin.rdbms.writer.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.github.simpledatax.common.exception.DataXException;
+import com.github.simpledatax.common.util.Configuration;
+import com.github.simpledatax.common.util.ListUtil;
+import com.github.simpledatax.plugin.rdbms.util.*;
+import com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterConstant;
+import com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterKey;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.simpledatax.common.exception.DataXException;
-import com.github.simpledatax.common.util.Configuration;
-import com.github.simpledatax.common.util.ListUtil;
-import com.github.simpledatax.plugin.rdbms.util.ConnectionFactory;
-import com.github.simpledatax.plugin.rdbms.util.DBUtil;
-import com.github.simpledatax.plugin.rdbms.util.DBUtilErrorCode;
-import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
-import com.github.simpledatax.plugin.rdbms.util.JdbcConnectionFactory;
-import com.github.simpledatax.plugin.rdbms.util.TableExpandUtil;
-import com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterConstant;
-import com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterKey;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class OriginalConfPretreatmentUtil {
     private static final Logger LOG = LoggerFactory

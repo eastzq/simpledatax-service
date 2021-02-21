@@ -1,11 +1,5 @@
 package com.github.simpledatax.api.adaptor;
 
-import java.io.InputStream;
-
-import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.api.adaptor.exception.DxException;
 import com.github.simpledatax.api.adaptor.parser.ParserCache;
 import com.github.simpledatax.api.adaptor.util.ResourceUtil;
@@ -15,6 +9,11 @@ import com.github.simpledatax.api.dto.DataCollectWriter;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.util.container.CoreConstant;
 import com.github.simpledatax.plugin.PluginResouce;
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.InputStream;
 
 /**
  * 配置对象初始化类！

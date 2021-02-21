@@ -1,11 +1,9 @@
 package com.github.simpledatax.core.statistics.plugin;
 
+import com.github.simpledatax.common.plugin.JobPluginCollector;
+
 import java.util.List;
 import java.util.Map;
-
-import com.github.simpledatax.common.plugin.JobPluginCollector;
-import com.github.simpledatax.core.statistics.communication.Communication;
-import com.github.simpledatax.core.statistics.communication.Communicator;
 
 /**
  * Created by jingxing on 14-9-9.

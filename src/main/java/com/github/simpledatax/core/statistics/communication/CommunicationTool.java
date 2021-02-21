@@ -1,13 +1,12 @@
 package com.github.simpledatax.core.statistics.communication;
 
+import com.alibaba.fastjson.JSON;
+import com.github.simpledatax.common.util.StrUtil;
+import org.apache.commons.lang.Validate;
+
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.commons.lang.Validate;
-
-import com.alibaba.fastjson.JSON;
-import com.github.simpledatax.common.util.StrUtil;
 
 /**
  * 这里主要是业务层面的处理

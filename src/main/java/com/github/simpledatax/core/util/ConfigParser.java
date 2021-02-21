@@ -1,15 +1,13 @@
 package com.github.simpledatax.core.util;
 
+import com.github.simpledatax.common.exception.DataXException;
+import com.github.simpledatax.common.util.Configuration;
+import com.github.simpledatax.core.util.container.CoreConstant;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.methods.HttpGet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.github.simpledatax.api.adaptor.ConfigHelper;
-import com.github.simpledatax.common.exception.DataXException;
-import com.github.simpledatax.common.util.Configuration;
-import com.github.simpledatax.core.util.container.CoreConstant;
 
 import java.io.File;
 import java.io.IOException;

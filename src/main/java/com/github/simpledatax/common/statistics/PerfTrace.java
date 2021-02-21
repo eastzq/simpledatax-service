@@ -1,12 +1,11 @@
 package com.github.simpledatax.common.statistics;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.statistics.PerfRecord.PHASE;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.common.util.HostUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

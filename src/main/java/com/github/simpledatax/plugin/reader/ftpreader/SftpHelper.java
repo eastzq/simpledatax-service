@@ -1,23 +1,17 @@
 package com.github.simpledatax.plugin.reader.ftpreader;
 
-import java.io.InputStream;
-import java.util.HashSet;
-import java.util.Properties;
-import java.util.Vector;
-
+import com.github.simpledatax.common.exception.DataXException;
+import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredStorageReaderUtil;
+import com.jcraft.jsch.*;
+import com.jcraft.jsch.ChannelSftp.LsEntry;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.simpledatax.common.exception.DataXException;
-import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredStorageReaderUtil;
-import com.jcraft.jsch.ChannelSftp;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;
-import com.jcraft.jsch.SftpATTRS;
-import com.jcraft.jsch.SftpException;
-import com.jcraft.jsch.ChannelSftp.LsEntry;
+import java.io.InputStream;
+import java.util.HashSet;
+import java.util.Properties;
+import java.util.Vector;
 
 public class SftpHelper extends FtpHelper {
 	private static final Logger LOG = LoggerFactory.getLogger(SftpHelper.class);

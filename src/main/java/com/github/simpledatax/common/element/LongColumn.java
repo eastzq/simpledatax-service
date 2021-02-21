@@ -1,9 +1,8 @@
 package com.github.simpledatax.common.element;
 
-import org.apache.commons.lang3.math.NumberUtils;
-
 import com.github.simpledatax.common.exception.CommonErrorCode;
 import com.github.simpledatax.common.exception.DataXException;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

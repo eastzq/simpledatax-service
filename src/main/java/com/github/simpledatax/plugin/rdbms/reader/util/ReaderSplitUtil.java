@@ -1,18 +1,17 @@
 package com.github.simpledatax.plugin.rdbms.reader.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.constant.CommonConstant;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant;
 import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderKey;
 import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class ReaderSplitUtil {
     private static final Logger LOG = LoggerFactory

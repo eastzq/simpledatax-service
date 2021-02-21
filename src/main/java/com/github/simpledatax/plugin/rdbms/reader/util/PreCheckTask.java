@@ -7,7 +7,6 @@ import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderKey;
 import com.github.simpledatax.plugin.rdbms.util.DBUtil;
 import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
 import com.github.simpledatax.plugin.rdbms.util.RdbmsException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,15 +1,5 @@
 package com.github.simpledatax.plugin.rdbms.writer.util;
 
-import java.sql.Connection;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.alibaba.druid.sql.parser.ParserException;
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.util.Configuration;
@@ -19,6 +9,15 @@ import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
 import com.github.simpledatax.plugin.rdbms.util.RdbmsException;
 import com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterConstant;
 import com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterKey;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public final class WriterUtil {
     private static final Logger LOG = LoggerFactory.getLogger(WriterUtil.class);

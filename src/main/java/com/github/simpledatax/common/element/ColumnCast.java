@@ -1,15 +1,17 @@
 package com.github.simpledatax.common.element;
 
-import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.commons.lang3.time.FastDateFormat;
-
 import com.github.simpledatax.common.exception.CommonErrorCode;
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.util.Configuration;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.FastDateFormat;
 
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
 
 public final class ColumnCast {
 

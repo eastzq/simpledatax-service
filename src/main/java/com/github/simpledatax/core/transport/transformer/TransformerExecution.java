@@ -1,8 +1,8 @@
 package com.github.simpledatax.core.transport.transformer;
 
-import java.util.Map;
-
 import com.github.simpledatax.transformer.ComplexTransformer;
+
+import java.util.Map;
 
 /**
  * 每个func对应一个实例.

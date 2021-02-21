@@ -1,15 +1,5 @@
 package com.github.simpledatax.plugin.reader.excelreader;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.element.Column;
 import com.github.simpledatax.common.element.Record;
 import com.github.simpledatax.common.element.StringColumn;
@@ -17,6 +7,15 @@ import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.spi.Reader;
 import com.github.simpledatax.common.util.Configuration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by haiwei.luo on 14-9-17.

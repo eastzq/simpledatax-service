@@ -1,8 +1,8 @@
 package com.github.simpledatax.transformer;
 
-import java.util.Map;
-
 import com.github.simpledatax.common.element.Record;
+
+import java.util.Map;
 
 /**
  * no comments.

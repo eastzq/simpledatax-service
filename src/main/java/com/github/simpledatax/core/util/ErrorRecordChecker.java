@@ -1,14 +1,13 @@
 package com.github.simpledatax.core.util;
 
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.statistics.communication.Communication;
 import com.github.simpledatax.core.statistics.communication.CommunicationTool;
 import com.github.simpledatax.core.util.container.CoreConstant;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 检查任务是否到达错误记录限制。有检查条数（recordLimit）和百分比(percentageLimit)两种方式。

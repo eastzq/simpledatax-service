@@ -1,9 +1,8 @@
 package com.github.simpledatax.common.element;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import com.github.simpledatax.common.exception.CommonErrorCode;
 import com.github.simpledatax.common.exception.DataXException;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -37,7 +36,6 @@ public class BytesColumn extends Column {
 		if (null == this.getRawData()) {
 			return null;
 		}
-
 		try {
 			return ColumnCast.bytes2String(this);
 		} catch (Exception e) {

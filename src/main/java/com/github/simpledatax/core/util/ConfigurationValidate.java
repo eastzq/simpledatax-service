@@ -1,8 +1,7 @@
 package com.github.simpledatax.core.util;
 
-import org.apache.commons.lang.Validate;
-
 import com.github.simpledatax.common.util.Configuration;
+import org.apache.commons.lang.Validate;
 
 /**
  * Created by jingxing on 14-9-16.

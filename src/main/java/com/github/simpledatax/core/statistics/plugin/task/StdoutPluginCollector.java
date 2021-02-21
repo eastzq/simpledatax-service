@@ -7,7 +7,6 @@ import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.statistics.communication.Communication;
 import com.github.simpledatax.core.statistics.plugin.task.util.DirtyRecord;
 import com.github.simpledatax.core.util.container.CoreConstant;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

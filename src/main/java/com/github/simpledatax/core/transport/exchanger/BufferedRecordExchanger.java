@@ -1,7 +1,5 @@
 package com.github.simpledatax.core.transport.exchanger;
 
-import org.apache.commons.lang.Validate;
-
 import com.github.simpledatax.common.element.Record;
 import com.github.simpledatax.common.exception.CommonErrorCode;
 import com.github.simpledatax.common.exception.DataXException;
@@ -14,6 +12,7 @@ import com.github.simpledatax.core.transport.record.DefaultRecord;
 import com.github.simpledatax.core.transport.record.TerminateRecord;
 import com.github.simpledatax.core.util.FrameworkErrorCode;
 import com.github.simpledatax.core.util.container.CoreConstant;
+import org.apache.commons.lang.Validate;
 
 import java.util.ArrayList;
 import java.util.List;

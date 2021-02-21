@@ -1,7 +1,5 @@
 package com.github.simpledatax.plugin.reader.rdbmsreader;
 
-import java.util.List;
-
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.spi.Reader;
@@ -10,6 +8,8 @@ import com.github.simpledatax.plugin.rdbms.reader.CommonRdbmsReader;
 import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant;
 import com.github.simpledatax.plugin.rdbms.util.DBUtilErrorCode;
 import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
+
+import java.util.List;
 
 public class RdbmsReader extends Reader {
     private static final DataBaseType DATABASE_TYPE = DataBaseType.RDBMS;

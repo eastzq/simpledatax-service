@@ -1,14 +1,13 @@
 package com.github.simpledatax.plugin.rdbms.reader;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.element.*;
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.plugin.TaskPluginCollector;
 import com.github.simpledatax.plugin.rdbms.util.DBUtilErrorCode;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;

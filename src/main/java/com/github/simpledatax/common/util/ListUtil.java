@@ -1,9 +1,8 @@
 package com.github.simpledatax.common.util;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.github.simpledatax.common.exception.CommonErrorCode;
 import com.github.simpledatax.common.exception.DataXException;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;

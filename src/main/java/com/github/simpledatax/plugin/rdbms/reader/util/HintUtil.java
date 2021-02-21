@@ -1,14 +1,13 @@
 package com.github.simpledatax.plugin.rdbms.reader.util;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant;
 import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderKey;
 import com.github.simpledatax.plugin.rdbms.util.DBUtil;
 import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

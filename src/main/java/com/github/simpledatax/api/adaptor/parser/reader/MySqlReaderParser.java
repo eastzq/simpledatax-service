@@ -1,15 +1,14 @@
 package com.github.simpledatax.api.adaptor.parser.reader;
 
-import java.text.MessageFormat;
-
-import org.apache.commons.lang3.StringUtils;
-
 import com.github.simpledatax.api.adaptor.exception.DxException;
 import com.github.simpledatax.api.adaptor.parser.intf.Parser;
 import com.github.simpledatax.api.dto.DataCollectPlugin;
 import com.github.simpledatax.api.dto.reader.MySqlReader;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.plugin.PluginResouce;
+import org.apache.commons.lang3.StringUtils;
+
+import java.text.MessageFormat;
 
 public class MySqlReaderParser implements Parser {
 

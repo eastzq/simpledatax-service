@@ -6,7 +6,6 @@ import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant;
 import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderKey;
 import com.github.simpledatax.plugin.rdbms.util.*;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;

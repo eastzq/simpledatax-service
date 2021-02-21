@@ -1,8 +1,5 @@
 package com.github.simpledatax.core.transport.exchanger;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.element.Record;
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.plugin.TaskPluginCollector;
@@ -11,6 +8,8 @@ import com.github.simpledatax.core.statistics.communication.CommunicationTool;
 import com.github.simpledatax.core.transport.transformer.TransformerErrorCode;
 import com.github.simpledatax.core.transport.transformer.TransformerExecution;
 import com.github.simpledatax.core.util.container.ClassLoaderSwapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 

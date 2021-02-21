@@ -1,8 +1,5 @@
 package com.github.simpledatax.api.adaptor.parser;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.github.simpledatax.api.adaptor.exception.DxException;
 import com.github.simpledatax.api.adaptor.parser.intf.Parser;
 import com.github.simpledatax.api.adaptor.parser.reader.MySqlReaderParser;
@@ -10,6 +7,9 @@ import com.github.simpledatax.api.adaptor.parser.writer.MySqlWriterParser;
 import com.github.simpledatax.api.dto.DataCollectPlugin;
 import com.github.simpledatax.api.dto.DataPluginEnum;
 import com.github.simpledatax.common.util.Configuration;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ParserCache {
 

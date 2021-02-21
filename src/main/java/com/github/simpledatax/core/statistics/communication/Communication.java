@@ -1,10 +1,9 @@
 package com.github.simpledatax.core.statistics.communication;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-
 import com.github.simpledatax.common.base.BaseObject;
 import com.github.simpledatax.dataxservice.face.domain.enums.State;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
 
 import java.util.ArrayList;
 import java.util.List;

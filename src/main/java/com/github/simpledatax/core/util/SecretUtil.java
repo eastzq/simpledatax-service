@@ -1,18 +1,16 @@
 package com.github.simpledatax.core.util;
 
+import com.github.simpledatax.common.exception.DataXException;
+import com.github.simpledatax.common.util.Configuration;
+import com.github.simpledatax.core.util.container.CoreConstant;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
 
-import com.github.simpledatax.common.exception.DataXException;
-import com.github.simpledatax.common.util.Configuration;
-import com.github.simpledatax.core.util.container.CoreConstant;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
