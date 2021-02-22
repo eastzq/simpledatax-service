@@ -1,22 +1,15 @@
 package com.github.simpledatax.api.adaptor.parser.writer;
 
-import java.text.MessageFormat;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.github.simpledatax.api.adaptor.ConfigHelper;
 import com.github.simpledatax.api.adaptor.exception.DxException;
 import com.github.simpledatax.api.adaptor.parser.intf.Parser;
-import com.github.simpledatax.api.adaptor.util.PropertiesKey;
 import com.github.simpledatax.api.dto.DataCollectPlugin;
-import com.github.simpledatax.api.dto.DataPluginEnum;
 import com.github.simpledatax.api.dto.writer.MySqlWriter;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.plugin.PluginResouce;
-import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
+
+import java.text.MessageFormat;
+import java.util.Arrays;
+import java.util.List;
 
 public class MySqlWriterParser implements Parser {
 

@@ -1,18 +1,13 @@
 package com.github.simpledatax.plugin.unstructuredstorage.writer;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-
+import com.github.simpledatax.common.element.Column;
+import com.github.simpledatax.common.element.DateColumn;
+import com.github.simpledatax.common.element.Record;
+import com.github.simpledatax.common.exception.DataXException;
+import com.github.simpledatax.common.plugin.RecordReceiver;
+import com.github.simpledatax.common.plugin.TaskPluginCollector;
+import com.github.simpledatax.common.util.Configuration;
+import com.google.common.collect.Sets;
 import org.apache.commons.compress.compressors.CompressorOutputStream;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorOutputStream;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorOutputStream;
@@ -22,14 +17,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.simpledatax.common.element.Column;
-import com.github.simpledatax.common.element.DateColumn;
-import com.github.simpledatax.common.element.Record;
-import com.github.simpledatax.common.exception.DataXException;
-import com.github.simpledatax.common.plugin.RecordReceiver;
-import com.github.simpledatax.common.plugin.TaskPluginCollector;
-import com.github.simpledatax.common.util.Configuration;
-import com.google.common.collect.Sets;
+import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class UnstructuredStorageWriterUtil {
     private UnstructuredStorageWriterUtil() {

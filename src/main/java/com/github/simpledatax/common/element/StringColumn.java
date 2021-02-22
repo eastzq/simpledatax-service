@@ -1,11 +1,11 @@
 package com.github.simpledatax.common.element;
 
+import com.github.simpledatax.common.exception.CommonErrorCode;
+import com.github.simpledatax.common.exception.DataXException;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
-import com.github.simpledatax.common.exception.CommonErrorCode;
-import com.github.simpledatax.common.exception.DataXException;
 
 /**
  * Created by jingxing on 14-8-24.

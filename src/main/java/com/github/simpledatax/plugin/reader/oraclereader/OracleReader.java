@@ -1,11 +1,5 @@
 package com.github.simpledatax.plugin.reader.oraclereader;
 
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.spi.Reader;
@@ -15,6 +9,11 @@ import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderConstant;
 import com.github.simpledatax.plugin.rdbms.reader.RdbmsReaderKey;
 import com.github.simpledatax.plugin.rdbms.util.DBUtilErrorCode;
 import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 public class OracleReader extends Reader {
 

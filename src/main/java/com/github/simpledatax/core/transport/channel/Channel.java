@@ -1,15 +1,14 @@
 package com.github.simpledatax.core.transport.channel;
 
-import org.apache.commons.lang.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.element.Record;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.statistics.communication.Communication;
 import com.github.simpledatax.core.statistics.communication.CommunicationTool;
 import com.github.simpledatax.core.transport.record.TerminateRecord;
 import com.github.simpledatax.core.util.container.CoreConstant;
+import org.apache.commons.lang.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 

@@ -1,9 +1,9 @@
 package com.github.simpledatax.plugin.rdbms.util;
 
+import com.github.simpledatax.common.exception.DataXException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.github.simpledatax.common.exception.DataXException;
 
 /**
  * refer:http://blog.csdn.net/ring0hx/article/details/6152528

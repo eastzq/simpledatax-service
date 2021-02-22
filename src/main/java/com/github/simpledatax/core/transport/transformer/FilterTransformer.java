@@ -1,10 +1,9 @@
 package com.github.simpledatax.core.transport.transformer;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.github.simpledatax.common.element.*;
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.transformer.Transformer;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 

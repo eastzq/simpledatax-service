@@ -1,13 +1,12 @@
 package com.github.simpledatax.core.taskgroup.runner;
 
-import org.apache.commons.lang.Validate;
-
 import com.github.simpledatax.common.plugin.AbstractTaskPlugin;
 import com.github.simpledatax.common.plugin.TaskPluginCollector;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.statistics.communication.Communication;
 import com.github.simpledatax.core.statistics.communication.CommunicationTool;
 import com.github.simpledatax.dataxservice.face.domain.enums.State;
+import org.apache.commons.lang.Validate;
 
 public abstract class AbstractRunner {
     private AbstractTaskPlugin plugin;

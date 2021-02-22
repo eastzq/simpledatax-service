@@ -1,8 +1,8 @@
 package com.github.simpledatax.common.spi;
 
-import java.util.Map;
-
 import com.github.simpledatax.common.util.Configuration;
+
+import java.util.Map;
 
 /**
  * Created by xiafei.qiuxf on 14/12/17.

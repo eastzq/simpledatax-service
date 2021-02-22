@@ -1,7 +1,5 @@
 package com.github.simpledatax.plugin.writer.rdbmswriter;
 
-import java.util.List;
-
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.plugin.RecordReceiver;
 import com.github.simpledatax.common.spi.Writer;
@@ -10,6 +8,8 @@ import com.github.simpledatax.plugin.rdbms.util.DBUtilErrorCode;
 import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
 import com.github.simpledatax.plugin.rdbms.writer.CommonRdbmsWriter;
 import com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterKey;
+
+import java.util.List;
 
 public class RdbmsWriter extends Writer {
     private static final DataBaseType DATABASE_TYPE = DataBaseType.RDBMS;

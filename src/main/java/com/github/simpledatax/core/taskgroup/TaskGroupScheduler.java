@@ -1,20 +1,5 @@
 package com.github.simpledatax.core.taskgroup;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.alibaba.fastjson.JSON;
 import com.github.simpledatax.common.constant.PluginType;
 import com.github.simpledatax.common.exception.DataXException;
@@ -38,6 +23,15 @@ import com.github.simpledatax.core.util.TransformerUtil;
 import com.github.simpledatax.core.util.container.CoreConstant;
 import com.github.simpledatax.core.util.container.LoadUtil;
 import com.github.simpledatax.dataxservice.face.domain.enums.State;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class TaskGroupScheduler {
 

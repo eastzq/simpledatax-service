@@ -1,17 +1,11 @@
 package com.github.simpledatax.plugin.writer.txtfilewriter;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-
+import com.github.simpledatax.common.exception.DataXException;
+import com.github.simpledatax.common.plugin.RecordReceiver;
+import com.github.simpledatax.common.spi.Writer;
+import com.github.simpledatax.common.util.Configuration;
+import com.github.simpledatax.plugin.unstructuredstorage.writer.UnstructuredStorageWriterUtil;
+import com.github.simpledatax.plugin.unstructuredstorage.writer.UnstructuredWriterKey;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.filefilter.PrefixFileFilter;
@@ -19,12 +13,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.simpledatax.common.exception.DataXException;
-import com.github.simpledatax.common.plugin.RecordReceiver;
-import com.github.simpledatax.common.spi.Writer;
-import com.github.simpledatax.common.util.Configuration;
-import com.github.simpledatax.plugin.unstructuredstorage.writer.UnstructuredStorageWriterUtil;
-import com.github.simpledatax.plugin.unstructuredstorage.writer.UnstructuredWriterKey;
+import java.io.*;
+import java.util.*;
 
 /**
  * Created by haiwei.luo on 14-9-17.

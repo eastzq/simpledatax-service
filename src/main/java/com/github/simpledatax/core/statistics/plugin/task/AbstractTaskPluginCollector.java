@@ -1,8 +1,5 @@
 package com.github.simpledatax.core.statistics.plugin.task;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.constant.PluginType;
 import com.github.simpledatax.common.element.Record;
 import com.github.simpledatax.common.exception.DataXException;
@@ -11,6 +8,8 @@ import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.statistics.communication.Communication;
 import com.github.simpledatax.core.statistics.communication.CommunicationTool;
 import com.github.simpledatax.core.util.FrameworkErrorCode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by jingxing on 14-9-11.

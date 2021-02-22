@@ -1,13 +1,12 @@
 package com.github.simpledatax.core.taskgroup.runner;
 
-import java.util.concurrent.Callable;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.plugin.AbstractTaskPlugin;
 import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.spi.Reader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.Callable;
 
 /**
  * Created by jingxing on 14-9-1.

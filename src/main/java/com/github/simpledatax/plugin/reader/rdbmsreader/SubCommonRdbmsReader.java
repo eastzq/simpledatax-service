@@ -1,20 +1,6 @@
 package com.github.simpledatax.plugin.reader.rdbmsreader;
 
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.Types;
-
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.github.simpledatax.common.element.BoolColumn;
-import com.github.simpledatax.common.element.BytesColumn;
-import com.github.simpledatax.common.element.DateColumn;
-import com.github.simpledatax.common.element.DoubleColumn;
-import com.github.simpledatax.common.element.LongColumn;
-import com.github.simpledatax.common.element.Record;
-import com.github.simpledatax.common.element.StringColumn;
+import com.github.simpledatax.common.element.*;
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.plugin.TaskPluginCollector;
@@ -22,6 +8,13 @@ import com.github.simpledatax.plugin.rdbms.reader.CommonRdbmsReader;
 import com.github.simpledatax.plugin.rdbms.util.DBUtil;
 import com.github.simpledatax.plugin.rdbms.util.DBUtilErrorCode;
 import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Types;
 
 public class SubCommonRdbmsReader extends CommonRdbmsReader {
     static {

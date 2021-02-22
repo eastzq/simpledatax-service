@@ -1,13 +1,12 @@
 package com.github.simpledatax.core.util;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.core.transport.transformer.*;
 import com.github.simpledatax.core.util.container.CoreConstant;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;

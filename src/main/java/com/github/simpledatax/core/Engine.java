@@ -1,13 +1,5 @@
 package com.github.simpledatax.core;
 
-import java.util.Map;
-import java.util.Set;
-
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.alibaba.fastjson.JSON;
 import com.github.simpledatax.api.dto.DataCollectResult;
 import com.github.simpledatax.common.element.ColumnCast;
@@ -17,6 +9,13 @@ import com.github.simpledatax.core.util.ConfigurationValidate;
 import com.github.simpledatax.core.util.SecretUtil;
 import com.github.simpledatax.core.util.container.CoreConstant;
 import com.github.simpledatax.core.util.container.LoadUtil;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Engine是DataX入口类，该类负责初始化Job或者Task的运行容器，并运行插件的Job或者Task逻辑

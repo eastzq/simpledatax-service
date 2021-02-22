@@ -16,8 +16,6 @@
 
 package com.github.simpledatax.core.transport.exchanger;
 
-import java.util.List;
-
 import com.github.simpledatax.common.element.Record;
 import com.github.simpledatax.common.exception.CommonErrorCode;
 import com.github.simpledatax.common.exception.DataXException;
@@ -31,6 +29,8 @@ import com.github.simpledatax.core.transport.record.DefaultRecord;
 import com.github.simpledatax.core.transport.record.TerminateRecord;
 import com.github.simpledatax.core.transport.transformer.TransformerExecution;
 import com.github.simpledatax.core.util.FrameworkErrorCode;
+
+import java.util.List;
 
 public class RecordExchanger extends TransformerExchanger implements RecordSender, RecordReceiver {
 

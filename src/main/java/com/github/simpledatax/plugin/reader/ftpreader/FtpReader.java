@@ -1,18 +1,17 @@
 package com.github.simpledatax.plugin.reader.ftpreader;
 
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.spi.Reader;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredStorageReaderUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 public class FtpReader extends Reader {
 	public static class Job extends Reader.Job {

@@ -1,28 +1,6 @@
 package com.github.simpledatax.plugin.rdbms.reader;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.Types;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.github.simpledatax.common.element.BoolColumn;
-import com.github.simpledatax.common.element.BytesColumn;
-import com.github.simpledatax.common.element.DateColumn;
-import com.github.simpledatax.common.element.DoubleColumn;
-import com.github.simpledatax.common.element.LongColumn;
-import com.github.simpledatax.common.element.Record;
-import com.github.simpledatax.common.element.StringColumn;
+import com.github.simpledatax.common.element.*;
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.plugin.TaskPluginCollector;
@@ -36,6 +14,21 @@ import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
 import com.github.simpledatax.plugin.rdbms.util.RdbmsException;
 import com.github.simpledatax.plugin.rdbms.writer.RdbmsWriterConstant;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class CommonRdbmsReader {
 

@@ -1,12 +1,5 @@
 package com.github.simpledatax.core.transport.channel.memory;
 
-import java.util.Collection;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
-
 import com.github.simpledatax.common.element.Record;
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.util.Configuration;
@@ -14,6 +7,13 @@ import com.github.simpledatax.core.transport.channel.Channel;
 import com.github.simpledatax.core.transport.record.TerminateRecord;
 import com.github.simpledatax.core.util.FrameworkErrorCode;
 import com.github.simpledatax.core.util.container.CoreConstant;
+
+import java.util.Collection;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 内存Channel的具体实现，底层其实是一个ArrayBlockingQueue

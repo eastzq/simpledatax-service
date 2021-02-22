@@ -1,12 +1,11 @@
 package com.github.simpledatax.core.transport.transformer;
 
-import groovy.lang.GroovyClassLoader;
-import org.apache.commons.lang3.StringUtils;
-import org.codehaus.groovy.control.CompilationFailedException;
-
 import com.github.simpledatax.common.element.Record;
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.transformer.Transformer;
+import groovy.lang.GroovyClassLoader;
+import org.apache.commons.lang3.StringUtils;
+import org.codehaus.groovy.control.CompilationFailedException;
 
 import java.util.Arrays;
 import java.util.List;

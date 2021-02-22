@@ -1,5 +1,7 @@
 package com.github.simpledatax.core.util;
 
+import com.github.simpledatax.common.exception.DataXException;
+import com.github.simpledatax.common.util.RetryUtil;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -13,9 +15,6 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-
-import com.github.simpledatax.common.exception.DataXException;
-import com.github.simpledatax.common.util.RetryUtil;
 
 import java.io.IOException;
 import java.util.Properties;

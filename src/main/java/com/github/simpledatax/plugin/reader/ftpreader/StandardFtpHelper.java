@@ -1,21 +1,19 @@
 package com.github.simpledatax.plugin.reader.ftpreader;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.UnknownHostException;
-import java.util.HashSet;
-
+import com.github.simpledatax.common.exception.DataXException;
+import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredStorageReaderUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPClientConfig;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.simpledatax.common.exception.DataXException;
-import com.github.simpledatax.plugin.unstructuredstorage.reader.UnstructuredStorageReaderUtil;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.UnknownHostException;
+import java.util.HashSet;
 
 public class StandardFtpHelper extends FtpHelper {
 	private static final Logger LOG = LoggerFactory.getLogger(StandardFtpHelper.class);

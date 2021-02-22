@@ -1,10 +1,9 @@
 package com.github.simpledatax.common.statistics;
 
+import com.github.simpledatax.common.util.HostUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.github.simpledatax.common.util.HostUtils;
 
 import java.util.Date;
 

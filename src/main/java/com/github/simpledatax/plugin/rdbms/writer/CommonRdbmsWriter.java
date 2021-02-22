@@ -1,21 +1,5 @@
 package com.github.simpledatax.plugin.rdbms.writer;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Types;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Triple;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.element.Column;
 import com.github.simpledatax.common.element.Record;
 import com.github.simpledatax.common.exception.DataXException;
@@ -28,6 +12,21 @@ import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
 import com.github.simpledatax.plugin.rdbms.util.RdbmsException;
 import com.github.simpledatax.plugin.rdbms.writer.util.OriginalConfPretreatmentUtil;
 import com.github.simpledatax.plugin.rdbms.writer.util.WriterUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Triple;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class CommonRdbmsWriter {
 

@@ -1,10 +1,5 @@
 package com.github.simpledatax.plugin.rdbms.reader.util;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.github.simpledatax.api.adaptor.util.TimeLogHelper;
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.util.Configuration;
 import com.github.simpledatax.common.util.ListUtil;
@@ -14,6 +9,9 @@ import com.github.simpledatax.plugin.rdbms.util.DBUtil;
 import com.github.simpledatax.plugin.rdbms.util.DBUtilErrorCode;
 import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
 import com.github.simpledatax.plugin.rdbms.util.TableExpandUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;

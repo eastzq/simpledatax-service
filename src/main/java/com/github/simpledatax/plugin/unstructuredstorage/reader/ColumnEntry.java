@@ -1,11 +1,10 @@
 package com.github.simpledatax.plugin.unstructuredstorage.reader;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
 
-import com.alibaba.fastjson.JSON;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class ColumnEntry {
     private Integer index;

@@ -1,14 +1,14 @@
 package com.github.simpledatax.plugin.writer.rdbmswriter;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Types;
-
 import com.github.simpledatax.common.element.Column;
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.plugin.rdbms.util.DBUtil;
 import com.github.simpledatax.plugin.rdbms.util.DataBaseType;
 import com.github.simpledatax.plugin.rdbms.writer.CommonRdbmsWriter;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Types;
 
 public class SubCommonRdbmsWriter extends CommonRdbmsWriter {
     static {

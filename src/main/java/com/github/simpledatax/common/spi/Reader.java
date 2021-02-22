@@ -1,12 +1,12 @@
 package com.github.simpledatax.common.spi;
 
-import java.util.List;
-
 import com.github.simpledatax.common.base.BaseObject;
 import com.github.simpledatax.common.plugin.AbstractJobPlugin;
 import com.github.simpledatax.common.plugin.AbstractTaskPlugin;
 import com.github.simpledatax.common.plugin.RecordSender;
 import com.github.simpledatax.common.util.Configuration;
+
+import java.util.List;
 
 /**
  * 每个Reader插件在其内部内部实现Job、Task两个内部类。

@@ -1,10 +1,10 @@
 package com.github.simpledatax.core.transport.transformer;
 
-import java.util.Map;
-
 import com.github.simpledatax.common.element.Record;
 import com.github.simpledatax.transformer.ComplexTransformer;
 import com.github.simpledatax.transformer.Transformer;
+
+import java.util.Map;
 
 /**
  * no comments.

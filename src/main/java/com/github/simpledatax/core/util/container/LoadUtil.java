@@ -1,8 +1,5 @@
 package com.github.simpledatax.core.util.container;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.github.simpledatax.common.constant.PluginType;
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.plugin.AbstractJobPlugin;

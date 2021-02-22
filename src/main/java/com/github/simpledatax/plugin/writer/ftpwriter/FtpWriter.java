@@ -1,16 +1,5 @@
 package com.github.simpledatax.plugin.writer.ftpwriter;
 
-import java.io.OutputStream;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.Callable;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.simpledatax.common.exception.DataXException;
 import com.github.simpledatax.common.plugin.RecordReceiver;
 import com.github.simpledatax.common.spi.Writer;
@@ -22,6 +11,16 @@ import com.github.simpledatax.plugin.writer.ftpwriter.util.Constant;
 import com.github.simpledatax.plugin.writer.ftpwriter.util.IFtpHelper;
 import com.github.simpledatax.plugin.writer.ftpwriter.util.SftpHelperImpl;
 import com.github.simpledatax.plugin.writer.ftpwriter.util.StandardFtpHelperImpl;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.OutputStream;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.Callable;
 
 public class FtpWriter extends Writer {
     public static class Job extends Writer.Job {

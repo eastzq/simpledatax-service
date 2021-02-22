@@ -1,14 +1,13 @@
 package com.github.simpledatax.core.taskgroup.runner;
 
-import java.util.concurrent.Callable;
-
+import com.github.simpledatax.common.plugin.AbstractTaskPlugin;
+import com.github.simpledatax.common.plugin.RecordReceiver;
+import com.github.simpledatax.common.spi.Writer;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.simpledatax.common.plugin.AbstractTaskPlugin;
-import com.github.simpledatax.common.plugin.RecordReceiver;
-import com.github.simpledatax.common.spi.Writer;
+import java.util.concurrent.Callable;
 
 /**
  * Created by jingxing on 14-9-1.
