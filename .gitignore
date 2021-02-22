@@ -1,3 +1,4 @@
 /target/
 .*
 /**/my/test/
+/simpledatax-service.iml
