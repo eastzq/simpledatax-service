@@ -88,16 +88,16 @@ public final class JobAssignUtil {
             String readerResourceMark = aTaskConfig.getString(CoreConstant.JOB_READER_PARAMETER + "." + CommonConstant.LOAD_BALANCE_RESOURCE_MARK);
             if (readerResourceMarkAndTaskIdMap.get(readerResourceMark) == null) {
                 readerResourceMarkAndTaskIdMap.put(readerResourceMark, new LinkedList<Integer>());
-            }
-            readerResourceMarkAndTaskIdMap.get(readerResourceMark).add(taskId);
-
-            // 把 writerResourceMark 加到 writerResourceMarkAndTaskIdMap 中
-            String writerResourceMark = aTaskConfig.getString(CoreConstant.JOB_WRITER_PARAMETER + "." + CommonConstant.LOAD_BALANCE_RESOURCE_MARK);
-            if (writerResourceMarkAndTaskIdMap.get(writerResourceMark) == null) {
-                writerResourceMarkAndTaskIdMap.put(writerResourceMark, new LinkedList<Integer>());
-            }
-            writerResourceMarkAndTaskIdMap.get(writerResourceMark).add(taskId);
         }
+        readerResourceMarkAndTaskIdMap.get(readerResourceMark).add(taskId);
+
+        // 把 writerResourceMark 加到 writerResourceMarkAndTaskIdMap 中
+        String writerResourceMark = aTaskConfig.getString(CoreConstant.JOB_WRITER_PARAMETER + "." + CommonConstant.LOAD_BALANCE_RESOURCE_MARK);
+        if (writerResourceMarkAndTaskIdMap.get(writerResourceMark) == null) {
+            writerResourceMarkAndTaskIdMap.put(writerResourceMark, new LinkedList<Integer>());
+        }
+        writerResourceMarkAndTaskIdMap.get(writerResourceMark).add(taskId);
+    }
 
         if (readerResourceMarkAndTaskIdMap.size() >= writerResourceMarkAndTaskIdMap.size()) {
             // 采用 reader 对资源做的标记进行 shuffle
