@@ -31,7 +31,7 @@
 
 		<slf4j.version>1.7.25</slf4j.version>
 		<spring.version>4.3.14.RELEASE</spring.version>
-		<fastjson.version>1.2.13</fastjson.version>
+		<fastjson.version>1.2.83</fastjson.version>
 		<druid.version>1.0.29</druid.version>
 		<oracle10.version>10.2.0.1.0</oracle10.version>
 		<orai18n.version>10.2.0.1</orai18n.version>
