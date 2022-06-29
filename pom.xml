@@ -42,7 +42,7 @@
 		<groovy-all.version>2.1.9</groovy-all.version>
 
 		<!-- commons tools settings -->
-		<poi.version>3.9</poi.version>
+		<poi.version>4.1.1</poi.version>
 		<xml-apis.version>1.4.01</xml-apis.version>
 		<commons-lang3.version>3.3.2</commons-lang3.version>
 		<commons-io.version>2.4</commons-io.version>
